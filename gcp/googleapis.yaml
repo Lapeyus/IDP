@@ -1,0 +1,8 @@
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  name: serviceusage.googleapis.com
+spec:
+  projectRef:
+    external: projects/jvillarreal-sandbox-360616

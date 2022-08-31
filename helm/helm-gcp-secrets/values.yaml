@@ -1,0 +1,21 @@
+projectID: jvillarreal-sandbox-360616
+# name of the cluster region
+clusterLocation: us-central1
+# name of the GKE cluster
+clusterName: argo
+clusterNamespace: default
+gcpServiceAccount: devops-robot
+refreshInterval: "10m"
+secrets:
+  - key: bodtropsd
+    name: jvillarreal
+    secretKey: key
+  - key: test
+    name: testa
+    secretKey: key
+  - key: bodtropsd2
+    name: jvillarreal2
+    secretKey: key2
+  - key: nuevo
+    name: viejo
+    secretKey: llave

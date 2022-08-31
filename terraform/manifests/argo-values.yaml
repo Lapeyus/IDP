@@ -1,0 +1,101 @@
+
+---
+anchors:
+  k3s: false
+  imagePullPolicy: &imagePullPolicy "Always"
+  namespace: &namespace "mavenir-platform"
+  nodeSelector: &nodeSelector
+    node-role.kubernetes.io/cicd: "true"
+  user:
+    username: &globalusername "mwp"
+    bcryptPassword: "JDJhJDEwJG5wZUh5WUt2UnBvblBkamdGdUNnQWVXYmd3QkowUXZTTnNBanlLdXhSeXJBTXRjV1FnZ1JL"
+    password: &globalpassword "newpass"
+    email: &globalemailcred "mwp@cicd.local"
+  domains:
+    gitea: &giteadomain gitea.mgmt1.mwp-mavenir.local
+    argocd: &argocddomain argocd.mgmt1.mwp-mavenir.local
+    drone: &dronedomain drone.mgmt1.mwp-mavenir.local
+    harbor: &harbordomain harbor.mgmt1.mwp-mavenir.local
+    notary: &notarydomain notary.mgmt1.mwp-mavenir.local
+    keycloak: &keycloakdomain keycloak.mgmt1.mwp-mavenir.local
+    workflowsdomain: &workflowsdomain workflows.mgmt1.mwp-mavenir.local
+    miniodomain: &miniodomain minio.mgmt1.mwp-mavenir.local
+  ingress:
+    annotations: &ingressAnnotations
+      kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: &clusterissuer "ca-clusterissuer"
+      traefik.ingress.kubernetes.io/router.tls: "true"
+  targetRegistryCredentials:
+    registry: "artifactory.crisp.com" #"harbor.crisp.com"
+    project: "ngn-mwpcicd-docker-dev" #"mwpcicd"
+    username: ""
+    password: ""
+
+global:
+  image:
+    imagePullPolicy: *imagePullPolicy
+controller:
+  enableStatefulSet: true
+  args:
+    statusProcessors: "75"
+    operationProcessors: "25"
+dex:
+  enabled: false
+  image:
+    imagePullPolicy: *imagePullPolicy
+  nodeSelector:
+    <<: *nodeSelector
+enabled: true
+metrics:
+  enabled: false
+  serviceMonitor:
+    enabled: false
+redis:
+  enabled: true
+  image:
+    imagePullPolicy: *imagePullPolicy
+redis-ha:
+  enabled: false
+  pullPolicy: *imagePullPolicy
+  persistentVolume:
+    enabled: true
+  haproxy:
+    enabled: true
+repoServer:
+  replicas: 2
+server:
+  autoscaling:
+    enabled: false
+  env:
+    - name: ARGOCD_API_SERVER_REPLICAS
+      value: '2'
+  image:
+    imagePullPolicy: *imagePullPolicy
+  replicas: 2
+  ingress:
+    enabled: true
+    annotations:
+      <<: *ingressAnnotations
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    hosts:
+      - *argocddomain
+    paths:
+      - "/"
+    tls:
+      - secretName: *argocddomain
+        hosts:
+          - *argocddomain
+  ingressGrpc:
+    enabled: false
+    annotations:
+      <<: *ingressAnnotations
+      nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+    hosts:
+      - *argocddomain
+    paths:
+      - "/"
+    tls:
+      - secretName: "argocdgrpc-tls"
+        hosts:
+          - *argocddomain
+    https: false
