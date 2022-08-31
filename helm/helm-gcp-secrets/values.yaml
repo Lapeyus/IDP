@@ -16,3 +16,6 @@ secrets:
   - key: a
     name: b
     secretKey: c
+  - key: democall
+    name: democall
+    secretKey: democall
