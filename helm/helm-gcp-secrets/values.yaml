@@ -16,4 +16,6 @@ secrets:
   - key: bodtropsd2
     name: jvillarreal2
     secretKey: key2
-
+  - key: a
+    name: b
+    secretKey: c
