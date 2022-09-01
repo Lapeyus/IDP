@@ -4,7 +4,7 @@ kind: SecretManagerSecret
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
-  name: configsync-test
+  name: configsync-test2
 spec:
   replication:
     automatic: true
