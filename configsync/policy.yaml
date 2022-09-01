@@ -26,7 +26,7 @@ spec:
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sDenyName
 metadata:
-  name: no-policy-violation
+  name: dont-use-kube-system
 spec:
   parameters:
     invalidNamespace: "kube-system"

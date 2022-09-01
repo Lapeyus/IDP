@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: "policy-violation"
-  namespace: default
+  namespace: kube-system
 spec:
   containers:
   - envFrom:
