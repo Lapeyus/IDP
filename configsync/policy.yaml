@@ -1,0 +1,32 @@
+---
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: ConstraintTemplate
+metadata:
+  name: k8sdenyname
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sDenyName
+      validation:
+        # Schema for the `parameters` field
+        openAPIV3Schema:
+          properties:
+            invalidName:
+              type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sdenynames
+        violation[{"msg": msg}] {
+          input.review.object.metadata.name == input.parameters.invalidName
+          msg := sprintf("The name %v is not allowed", [input.parameters.invalidName])
+        }
+---
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sDenyName
+metadata:
+  name: no-policy-violation
+spec:
+  parameters:
+    invalidName: "policy-violation"
