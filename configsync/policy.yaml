@@ -12,15 +12,15 @@ spec:
         # Schema for the `parameters` field
         openAPIV3Schema:
           properties:
-            invalidName:
+            invalidNamespace:
               type: string
   targets:
     - target: admission.k8s.gatekeeper.sh
       rego: |
         package k8sdenynames
         violation[{"msg": msg}] {
-          input.review.object.metadata.name == input.parameters.invalidName
-          msg := sprintf("The name %v is not allowed", [input.parameters.invalidName])
+          input.review.object.metadata.namespace == input.parameters.invalidNamespace
+          msg := sprintf("The namespace %v is not allowed", [input.parameters.invalidNamespace])
         }
 ---
 apiVersion: constraints.gatekeeper.sh/v1beta1
@@ -29,4 +29,4 @@ metadata:
   name: no-policy-violation
 spec:
   parameters:
-    invalidName: "policy-violation"
+    invalidNamespace: "kube-system"
