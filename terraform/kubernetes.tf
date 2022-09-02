@@ -5,12 +5,58 @@ data "google_client_config" "client" {}
 data "template_file" "access_token" {
   template = data.google_client_config.client.access_token
 }
-
 provider "kubernetes" {
   host                   = "https://${google_container_cluster.primary.endpoint}"
   token                  = data.template_file.access_token.rendered
   cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
 }
+
+resource "kubernetes_secret" "git-creds" {
+  metadata {
+    name      = "git-creds"
+    namespace = "config-management-system"
+  }
+  data = {
+    "ssh" = file("~/.ssh/id_rsa")
+  }
+  depends_on = [
+    google_container_cluster.primary
+  ]
+}
+
+# provider "helm" {
+#   kubernetes {
+#     host                   = google_container_cluster.primary.endpoint
+#     client_certificate     = base64decode(google_container_cluster.primary.master_auth.0.client_certificate)
+#     client_key             = base64decode(google_container_cluster.primary.master_auth.0.client_key)
+#     cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
+#     token                  = data.template_file.access_token.rendered
+#   }
+# }
+
+# # note this requires the terraform to be run regularly
+# resource "time_rotating" "mykey_rotation" {
+#   rotation_days = 30
+# }
+# resource "google_service_account_key" "gcpsm-secret-key" {
+#   service_account_id = google_service_account.idp-robot.name
+#   keepers = {
+#     rotation_time = time_rotating.mykey_rotation.rotation_rfc3339
+#   }
+# }
+
+# resource "kubernetes_secret" "gcpsm-secret" {
+#   metadata {
+#     name      = "gcpsm-secret"
+#     namespace = "default"
+#   }
+#   data = {
+#     "secret-access-credentials" = base64decode(google_service_account_key.gcpsm-secret-key.private_key)
+#   }
+#   depends_on = [
+#     google_container_cluster.primary
+#   ]
+# }
 
 # # terraform import kubernetes_manifest.connector_config "apiVersion=core.cnrm.cloud.google.com/v1beta1,kind=ConfigConnector,namespace=default,name=configconnector.core.cnrm.cloud.google.com"
 # resource "kubernetes_manifest" "connector_config" {
@@ -30,38 +76,6 @@ provider "kubernetes" {
 #     force_conflicts = true
 #   }
 # }
-
-# note this requires the terraform to be run regularly
-resource "time_rotating" "mykey_rotation" {
-  rotation_days = 30
-}
-resource "google_service_account_key" "gcpsm-secret-key" {
-  service_account_id = google_service_account.idp-robot.name
-  keepers = {
-    rotation_time = time_rotating.mykey_rotation.rotation_rfc3339
-  }
-}
-
-resource "kubernetes_secret" "gcpsm-secret" {
-  metadata {
-    name      = "gcpsm-secret"
-    namespace = "default"
-  }
-  data = {
-    "secret-access-credentials" = base64decode(google_service_account_key.gcpsm-secret-key.private_key)
-  }
-}
-
-provider "helm" {
-  kubernetes {
-    host                   = google_container_cluster.primary.endpoint
-    client_certificate     = base64decode(google_container_cluster.primary.master_auth.0.client_certificate)
-    client_key             = base64decode(google_container_cluster.primary.master_auth.0.client_key)
-    cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
-    token                  = data.template_file.access_token.rendered
-  }
-}
-
 # # external-secrets helm chart.
 # resource "helm_release" "external-secrets" {
 #   atomic                     = false

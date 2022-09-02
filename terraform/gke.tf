@@ -105,12 +105,6 @@ resource "google_gke_hub_feature_membership" "feature_member" {
   membership = google_gke_hub_membership.membership.membership_id
   configmanagement {
     version = "1.12.2"
-    hierarchy_controller {
-      enabled = false
-      enable_hierarchical_resource_quota = false
-      enable_pod_tree_labels = false
-    }
-
     policy_controller {
       enabled = false
       audit_interval_seconds = 15
@@ -129,12 +123,12 @@ resource "google_gke_hub_feature_membership" "feature_member" {
       source_format = "unstructured" # hierarchy|unstructured
 
       git {
-        sync_repo   = "https://github.com/Lapeyus/IDP.git"
+        sync_repo   = "git@github.com:Lapeyus/IDP.git"
         sync_rev = "HEAD"
         sync_wait_secs = "15"
         sync_branch = "main"
         policy_dir  = "configsync/"
-        secret_type = "none"
+        secret_type = "ssh"
       }
     }
   }
