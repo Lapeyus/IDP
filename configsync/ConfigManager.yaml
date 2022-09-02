@@ -1,0 +1,20 @@
+---
+apiVersion: configmanagement.gke.io/v1
+kind: ConfigManagement
+metadata:
+  name: config-management
+spec:
+  clusterName: sauron
+  preventDrift: true
+  enableMultiRepo: true
+  policyController:
+    enabled: true
+    templateLibraryInstalled: true
+  git:
+    syncRepo: "https://github.com/Lapeyus/IDP.git"
+    syncBranch:
+    policyDir:
+    syncWait:
+    syncRev: 
+    secretType:
+    sourceFormat: 
