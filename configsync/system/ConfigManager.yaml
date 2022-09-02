@@ -8,6 +8,7 @@ spec:
   clusterName: sauron
   preventDrift: true
   enableMultiRepo: true
+  enableLegacyFields: true
   policyController:
     enabled: true
     templateLibraryInstalled: true
