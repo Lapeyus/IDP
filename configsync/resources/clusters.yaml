@@ -1,0 +1,11 @@
+---
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerCluster
+metadata:
+  name: autopilot
+spec:
+  description: An autopilot cluster.
+  enableAutopilot: true
+  location: us-central1
+  releaseChannel:
+    channel: REGULAR
