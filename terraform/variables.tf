@@ -27,9 +27,9 @@ variable "gke_password" {
   description = "GKE password"
   default     = ""
 }
-variable "cluster" {
+variable "cluster_name" {
   type        = string
-  description = "The name of the cluster where ArgoCD will reside."
+  description = "The name of the cluster"
 }
 variable "gke_num_nodes" {
   type        = number

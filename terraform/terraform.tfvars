@@ -15,14 +15,14 @@ gke_username = "username"
 gke_password = "password"
 
 #Cluster 
-cluster    = "jvillarreal-sandbox-360616-gke"
+cluster_name  = "sauron"
 max_cpu    = 40
 max_memory = 96
 
 #Node
 gke_num_nodes      = 1
 autoscale_min_node = 0
-autoscale_max_node = 3
+autoscale_max_node = 10
 machine_type       = "e2-standard-8"
 
 

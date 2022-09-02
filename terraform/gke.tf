@@ -7,7 +7,7 @@ resource "google_container_cluster" "primary" {
   location                 = var.gcp_region
   logging_service          = "logging.googleapis.com/kubernetes"
   monitoring_service       = "monitoring.googleapis.com/kubernetes"
-  name                     = "argo" #"${var.gcp_project}"
+  name                     = var.cluster_name
   network                  = google_compute_network.vpc.name
   project                  = var.gcp_project
   remove_default_node_pool = true
@@ -81,8 +81,15 @@ resource "google_container_node_pool" "primary_node" {
 
 }
 
+# terraform import google_gke_hub_feature.feature projects/jvillarreal-sandbox-360616/locations/global/features/configmanagement
+resource "google_gke_hub_feature" "feature" {
+  name     = "configmanagement"
+  location = "global"
+  provider = google-beta
+}
+
 resource "google_gke_hub_membership" "membership" {
-  membership_id = "argo"
+  membership_id = var.cluster_name
   endpoint {
     gke_cluster {
       resource_link = "//container.googleapis.com/${google_container_cluster.primary.id}"
@@ -91,12 +98,6 @@ resource "google_gke_hub_membership" "membership" {
   provider = google-beta
 }
 
-# terraform import google_gke_hub_feature.feature projects/jvillarreal-sandbox-360616/locations/global/features/configmanagement
-resource "google_gke_hub_feature" "feature" {
-  name     = "configmanagement"
-  location = "global"
-  provider = google-beta
-}
 
 resource "google_gke_hub_feature_membership" "feature_member" {
   location   = "global"
@@ -105,13 +106,13 @@ resource "google_gke_hub_feature_membership" "feature_member" {
   configmanagement {
     version = "1.12.2"
     hierarchy_controller {
-      enabled = true
+      enabled = false
       enable_hierarchical_resource_quota = false
       enable_pod_tree_labels = false
     }
 
     policy_controller {
-      enabled = true
+      enabled = false
       audit_interval_seconds = 15
       exemptable_namespaces = ["anthos-identity-service","cnrm-system","config-management-monitoring","config-management-system","configconnector-operator-system","gatekeeper-system","kube-node-lease","kube-public","kube-system","resource-group-system"]
       log_denies_enabled = true
@@ -122,6 +123,7 @@ resource "google_gke_hub_feature_membership" "feature_member" {
         backends = ["PROMETHEUS", "CLOUD_MONITORING"]
       }
     }
+
     config_sync {
       prevent_drift = true
       source_format = "unstructured" # hierarchy|unstructured
