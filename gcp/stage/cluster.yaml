@@ -6,6 +6,7 @@ metadata:
     availability: high
     target-audience: production
   name: containercluster-sample-vpcnative
+  namespace: iac
 spec:
   description: A large regional VPC-native cluster set up with special networking considerations.
   location: us-central1
