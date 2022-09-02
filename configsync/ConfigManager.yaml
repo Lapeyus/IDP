@@ -15,7 +15,7 @@ spec:
     syncRepo: "https://github.com/Lapeyus/IDP.git"
     syncBranch: "main"
     policyDir: "configsync/"
-    syncWait: "15"
+    syncWait: 15
     syncRev: "HEAD"
     secretType: "none"
     
