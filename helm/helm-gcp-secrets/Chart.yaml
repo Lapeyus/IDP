@@ -22,3 +22,8 @@ version: 0.1.0
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 appVersion: "0.1.0"
+dependencies:
+- condition: external-secrets.enabled
+  name: external-secrets
+  repository: https://charts.external-secrets.io
+  version: 0.5.9
