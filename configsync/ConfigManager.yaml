@@ -4,6 +4,7 @@ kind: ConfigManagement
 metadata:
   name: config-management
 spec:
+  sourceFormat: "unstructured"
   clusterName: sauron
   preventDrift: true
   enableMultiRepo: true
@@ -12,9 +13,9 @@ spec:
     templateLibraryInstalled: true
   git:
     syncRepo: "https://github.com/Lapeyus/IDP.git"
-    syncBranch:
-    policyDir:
-    syncWait:
-    syncRev: 
-    secretType:
-    sourceFormat: 
+    syncBranch: "main"
+    policyDir: "configsync/"
+    syncWait: "15"
+    syncRev: "HEAD"
+    secretType: "none"
+    
