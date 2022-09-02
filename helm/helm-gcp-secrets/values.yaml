@@ -2,7 +2,7 @@ projectID: jvillarreal-sandbox-360616
 # name of the cluster region
 clusterLocation: us-central1
 # name of the GKE cluster
-clusterName: argo
+clusterName: sauron
 clusterNamespace: default
 gcpServiceAccount: devops-robot
 refreshInterval: "10m"
