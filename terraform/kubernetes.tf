@@ -1,16 +1,16 @@
-# #Expose an access token for communicating with the GKE cluster.
-# data "google_client_config" "client" {}
+#Expose an access token for communicating with the GKE cluster.
+data "google_client_config" "client" {}
 
-# #Create access token
-# data "template_file" "access_token" {
-#   template = data.google_client_config.client.access_token
-# }
+#Create access token
+data "template_file" "access_token" {
+  template = data.google_client_config.client.access_token
+}
 
-# provider "kubernetes" {
-#   host                   = "https://${google_container_cluster.primary.endpoint}"
-#   token                  = data.template_file.access_token.rendered
-#   cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
-# }
+provider "kubernetes" {
+  host                   = "https://${google_container_cluster.primary.endpoint}"
+  token                  = data.template_file.access_token.rendered
+  cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
+}
 
 # # terraform import kubernetes_manifest.connector_config "apiVersion=core.cnrm.cloud.google.com/v1beta1,kind=ConfigConnector,namespace=default,name=configconnector.core.cnrm.cloud.google.com"
 # resource "kubernetes_manifest" "connector_config" {
@@ -31,36 +31,36 @@
 #   }
 # }
 
-# # note this requires the terraform to be run regularly
-# resource "time_rotating" "mykey_rotation" {
-#   rotation_days = 30
-# }
-# resource "google_service_account_key" "gcpsm-secret-key" {
-#   service_account_id = google_service_account.idp-robot.name
-#   keepers = {
-#     rotation_time = time_rotating.mykey_rotation.rotation_rfc3339
-#   }
-# }
+# note this requires the terraform to be run regularly
+resource "time_rotating" "mykey_rotation" {
+  rotation_days = 30
+}
+resource "google_service_account_key" "gcpsm-secret-key" {
+  service_account_id = google_service_account.idp-robot.name
+  keepers = {
+    rotation_time = time_rotating.mykey_rotation.rotation_rfc3339
+  }
+}
 
-# resource "kubernetes_secret" "gcpsm-secret" {
-#   metadata {
-#     name      = "gcpsm-secret"
-#     namespace = "default"
-#   }
-#   data = {
-#     "secret-access-credentials" = base64decode(google_service_account_key.gcpsm-secret-key.private_key)
-#   }
-# }
+resource "kubernetes_secret" "gcpsm-secret" {
+  metadata {
+    name      = "gcpsm-secret"
+    namespace = "default"
+  }
+  data = {
+    "secret-access-credentials" = base64decode(google_service_account_key.gcpsm-secret-key.private_key)
+  }
+}
 
-# provider "helm" {
-#   kubernetes {
-#     host                   = google_container_cluster.primary.endpoint
-#     client_certificate     = base64decode(google_container_cluster.primary.master_auth.0.client_certificate)
-#     client_key             = base64decode(google_container_cluster.primary.master_auth.0.client_key)
-#     cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
-#     token                  = data.template_file.access_token.rendered
-#   }
-# }
+provider "helm" {
+  kubernetes {
+    host                   = google_container_cluster.primary.endpoint
+    client_certificate     = base64decode(google_container_cluster.primary.master_auth.0.client_certificate)
+    client_key             = base64decode(google_container_cluster.primary.master_auth.0.client_key)
+    cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
+    token                  = data.template_file.access_token.rendered
+  }
+}
 
 # # external-secrets helm chart.
 # resource "helm_release" "external-secrets" {
