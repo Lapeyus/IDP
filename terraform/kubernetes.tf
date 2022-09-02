@@ -14,7 +14,7 @@ provider "kubernetes" {
 resource "kubernetes_secret" "git-creds" {
   metadata {
     name      = "git-creds"
-    namespace = "config-management-system"
+    namespace = each.key
   }
   data = {
     "ssh" = file("~/.ssh/id_rsa")
@@ -22,6 +22,8 @@ resource "kubernetes_secret" "git-creds" {
   depends_on = [
     google_container_cluster.primary
   ]
+
+  for_each = toset(["config-management-system", "default"])
 }
 
 # provider "helm" {

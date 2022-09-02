@@ -106,13 +106,13 @@ resource "google_gke_hub_feature_membership" "feature_member" {
   configmanagement {
     version = "1.12.2"
     policy_controller {
-      enabled = false
-      audit_interval_seconds = 15
-      exemptable_namespaces = ["anthos-identity-service","cnrm-system","config-management-monitoring","config-management-system","configconnector-operator-system","gatekeeper-system","kube-node-lease","kube-public","kube-system","resource-group-system"]
-      log_denies_enabled = true
+      enabled                    = false
+      audit_interval_seconds     = 15
+      exemptable_namespaces      = ["anthos-identity-service", "cnrm-system", "config-management-monitoring", "config-management-system", "configconnector-operator-system", "gatekeeper-system", "kube-node-lease", "kube-public", "kube-system", "resource-group-system"]
+      log_denies_enabled         = true
       referential_rules_enabled  = true
       template_library_installed = true
-      mutation_enabled = true
+      mutation_enabled           = true
       monitoring {
         backends = ["PROMETHEUS", "CLOUD_MONITORING"]
       }
@@ -123,12 +123,12 @@ resource "google_gke_hub_feature_membership" "feature_member" {
       source_format = "unstructured" # hierarchy|unstructured
 
       git {
-        sync_repo   = "git@github.com:Lapeyus/IDP.git"
-        sync_rev = "HEAD"
+        sync_repo      = "git@github.com:Lapeyus/IDP.git"
+        sync_rev       = "HEAD"
         sync_wait_secs = "15"
-        sync_branch = "main"
-        policy_dir  = "configsync/"
-        secret_type = "ssh"
+        sync_branch    = "main"
+        policy_dir     = "configsync/"
+        secret_type    = "ssh"
       }
     }
   }

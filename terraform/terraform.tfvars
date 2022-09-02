@@ -15,9 +15,9 @@ gke_username = "username"
 gke_password = "password"
 
 #Cluster 
-cluster_name  = "sauron"
-max_cpu    = 40
-max_memory = 96
+cluster_name = "sauron"
+max_cpu      = 40
+max_memory   = 96
 
 #Node
 gke_num_nodes      = 1
