@@ -18,16 +18,3 @@ spec:
     syncWait: 15
     syncRev: "HEAD"
     secretType: "ssh"
----
-apiVersion: configmanagement.gke.io/v1
-kind: ConfigManagement
-metadata:
-  name: remote-config-management
-spec:
-  sourceFormat: "unstructured"
-  clusterName: autopilot
-  preventDrift: false
-  enableMultiRepo: false
-  policyController:
-    enabled: true
-    templateLibraryInstalled: true
