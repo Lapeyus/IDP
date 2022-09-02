@@ -1,12 +1,4 @@
 # # GKE cluster
-# resource "google_container_cluster" "argo" {
-#   name     = "${var.project_id}-argo-cluster"
-#   location = var.region
-#   network    = google_compute_network.vpc.name
-#   subnetwork = google_compute_subnetwork.gke.name
-#   enable_autopilot = true
-# }
-
 resource "google_container_cluster" "primary" {
   provider                 = google-beta
   enable_kubernetes_alpha  = false
@@ -51,55 +43,6 @@ resource "google_container_cluster" "primary" {
   workload_identity_config {
     workload_pool = "${var.gcp_project}.svc.id.goog"
   }
-  # node_pool {
-  #   initial_node_count = 1
-  #   # instance_group_urls = (known after apply)
-  #   # max_pods_per_node   = (known after apply)
-  #   name = "default-idp"
-  #   # name_prefix         = (known after apply)
-  #   # node_count = 1
-  #   # node_locations      = (known after apply)
-  #   # version             = (known after apply)
-  #   autoscaling {
-  #     min_node_count = var.autoscale_min_node
-  #     max_node_count = var.autoscale_max_node
-  #   }
-  #   management {
-  #     auto_repair  = true
-  #     auto_upgrade = true
-  #   }
-  #   node_config {
-  #     # disk_size_gb      = (known after apply)
-  #     # disk_type         = (known after apply)
-  #     # guest_accelerator = (known after apply)
-  #     # image_type        = (known after apply)
-  #     # labels            = (known after apply)
-  #     # local_ssd_count   = (known after apply)
-  #     # machine_type      = (known after apply)
-  #     metadata = {
-  #       disable-legacy-endpoints = "true"
-  #     } # min_cpu_platform  = (known after apply)
-  #     # oauth_scopes      = (known after apply)
-  #     preemptible     = true
-  #     service_account = "idp-robot@crisp-343115.iam.gserviceaccount.com" #google_service_account.idp-robot.name
-  #     tags            = ["${var.gcp_project}-gke", "default-idp"]
-  #     # taint             = (known after apply)
-  #     workload_metadata_config {
-  #       mode = "GKE_METADATA"
-  #       #node_metadata
-  #     }
-  #   }
-  #   upgrade_settings {
-  #     max_surge       = 1
-  #     max_unavailable = 1
-  #   }
-  # }
-  # vertical_pod_autoscaling {
-  #   enabled = true
-  # }
-  # workload_identity_config {
-  #   workload_pool = "${var.gcp_project}.svc.id.goog"
-  # }
 }
 
 # # Separately Managed Node Pool
@@ -125,7 +68,6 @@ resource "google_container_node_pool" "primary_node" {
     # taint             = (known after apply)
     workload_metadata_config {
       node_metadata = "GKE_METADATA_SERVER"
-      #node_metadata
     }
     service_account = google_service_account.idp-robot.email
     oauth_scopes = [
@@ -137,4 +79,62 @@ resource "google_container_node_pool" "primary_node" {
     machine_type = var.machine_type
   }
 
+}
+
+resource "google_gke_hub_membership" "membership" {
+  membership_id = "argo"
+  endpoint {
+    gke_cluster {
+      resource_link = "//container.googleapis.com/${google_container_cluster.primary.id}"
+    }
+  }
+  provider = google-beta
+}
+
+# terraform import google_gke_hub_feature.feature projects/jvillarreal-sandbox-360616/locations/global/features/configmanagement
+resource "google_gke_hub_feature" "feature" {
+  name     = "configmanagement"
+  location = "global"
+  provider = google-beta
+}
+
+resource "google_gke_hub_feature_membership" "feature_member" {
+  location   = "global"
+  feature    = google_gke_hub_feature.feature.name
+  membership = google_gke_hub_membership.membership.membership_id
+  configmanagement {
+    version = "1.12.2"
+    hierarchy_controller {
+      enabled = true
+      enable_hierarchical_resource_quota = false
+      enable_pod_tree_labels = false
+    }
+
+    policy_controller {
+      enabled = true
+      audit_interval_seconds = 15
+      exemptable_namespaces = ["anthos-identity-service","cnrm-system","config-management-monitoring","config-management-system","configconnector-operator-system","gatekeeper-system","kube-node-lease","kube-public","kube-system","resource-group-system"]
+      log_denies_enabled = true
+      referential_rules_enabled  = true
+      template_library_installed = true
+      mutation_enabled = true
+      monitoring {
+        backends = ["PROMETHEUS", "CLOUD_MONITORING"]
+      }
+    }
+    config_sync {
+      prevent_drift = true
+      source_format = "unstructured" # hierarchy|unstructured
+
+      git {
+        sync_repo   = "https://github.com/Lapeyus/IDP.git"
+        sync_rev = "HEAD"
+        sync_wait_secs = "15"
+        sync_branch = "main"
+        policy_dir  = "configsync/"
+        secret_type = "none"
+      }
+    }
+  }
+  provider = google-beta
 }

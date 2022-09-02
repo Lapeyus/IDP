@@ -16,17 +16,17 @@ provider "kubernetes" {
 resource "kubernetes_manifest" "connector_config" {
   manifest = {
     "apiVersion" = "core.cnrm.cloud.google.com/v1beta1"
-    "kind" = "ConfigConnector"
+    "kind"       = "ConfigConnector"
     "metadata" = {
       "name" = "configconnector.core.cnrm.cloud.google.com"
     }
     "spec" = {
       "googleServiceAccount" = "${google_service_account.idp-robot.email}"
-      "mode" = "cluster"
+      "mode"                 = "cluster"
       # "mode" = "namespaced"
     }
   }
-    field_manager {
+  field_manager {
     force_conflicts = true
   }
 }
@@ -44,7 +44,7 @@ resource "google_service_account_key" "gcpsm-secret-key" {
 
 resource "kubernetes_secret" "gcpsm-secret" {
   metadata {
-    name = "gcpsm-secret"
+    name      = "gcpsm-secret"
     namespace = "default"
   }
   data = {
@@ -97,9 +97,9 @@ resource "helm_release" "external-secrets" {
 
 
 resource "helm_release" "helm-gcp-secrets" {
-  chart            = "../helm/helm-gcp-secrets"
-  name             = "helm-gcp-secrets"
-  namespace        = "default"
+  chart     = "../helm/helm-gcp-secrets"
+  name      = "helm-gcp-secrets"
+  namespace = "default"
   # create_namespace = true
   # values = [
   #   templatefile("../helm/helm-gcp-secrets/values.yaml", {
@@ -110,12 +110,12 @@ resource "helm_release" "helm-gcp-secrets" {
 
 #  argo helm chart.
 resource "helm_release" "argo" {
-  chart      = "argo-cd"
-  repository = "https://argoproj.github.io/argo-helm"
-  name       = "argo-cd"
-  namespace  = "default"
-  force_update = true
-  create_namespace  = true
+  chart            = "argo-cd"
+  repository       = "https://argoproj.github.io/argo-helm"
+  name             = "argo-cd"
+  namespace        = "default"
+  force_update     = true
+  create_namespace = true
   # values = [
   #   "${file("manifests/argo-values.yaml")}"
   # ]
