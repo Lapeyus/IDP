@@ -11,7 +11,14 @@ spec:
   source:
     helm:
       valueFiles:
-      - values.yaml
+        - values.yaml
+      parameters:
+        - name: 'secrets[0].key'
+          value: clusters
+        - name: 'secrets[0].name'
+          value: clusters
+        - name: 'secrets[0].secretKey'
+          value: clusters
     path: helm/helm-gcp-secrets
     repoURL: git@github.com:Lapeyus/IDP.git
     targetRevision: HEAD

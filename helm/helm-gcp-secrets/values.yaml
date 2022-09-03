@@ -6,7 +6,7 @@ clusterName: sauron
 clusterNamespace: default
 gcpServiceAccount: devops-robot
 refreshInterval: "10m"
-secrets:
-  - key: cluster
-    name: cluster
-    secretKey: cluster
+secrets: []
+  # - key: cluster
+  #   name: cluster
+  #   secretKey: cluster
