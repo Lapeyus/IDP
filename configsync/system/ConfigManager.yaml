@@ -1,21 +1,21 @@
----
-apiVersion: configmanagement.gke.io/v1
-kind: ConfigManagement
-metadata:
-  name: config-management
-spec:
-  sourceFormat: "unstructured"
-  clusterName: sauron
-  preventDrift: true
-  enableMultiRepo: true
-  enableLegacyFields: true
-  policyController:
-    enabled: true
-    templateLibraryInstalled: true
-  git:
-    syncRepo: "git@github.com:Lapeyus/IDP.git"
-    syncBranch: "main"
-    policyDir: "configsync/"
-    syncWait: 15
-    syncRev: "HEAD"
-    secretType: "ssh"
+# ---
+# apiVersion: configmanagement.gke.io/v1
+# kind: ConfigManagement
+# metadata:
+#   name: config-management
+# spec:
+#   sourceFormat: "unstructured"
+#   clusterName: sauron
+#   preventDrift: true
+#   enableMultiRepo: true
+#   enableLegacyFields: true
+#   policyController:
+#     enabled: true
+#     templateLibraryInstalled: true
+#   git:
+#     syncRepo: "git@github.com:Lapeyus/IDP.git"
+#     syncBranch: "main"
+#     policyDir: "configsync/"
+#     syncWait: 15
+#     syncRev: "HEAD"
+#     secretType: "ssh"
