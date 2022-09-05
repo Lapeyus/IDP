@@ -33,7 +33,7 @@ resource "google_compute_firewall" "gke-net-firewall" {
   network  = google_compute_network.vpc.name
   priority = 1000
   allow {
-    protocol = "TCP"
+    protocol = "UDP"
     ports    = [31899]
   }
   target_tags = ["default-idp"]
