@@ -4,7 +4,7 @@ kind: IAMCustomRole
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
-  name: iamcustomrolesampleproject
+  name: jvillarreal-sandbox-360616
   namespace: iac
 spec:
   title: Example Project-Level Custom Role
@@ -21,7 +21,7 @@ metadata:
   namespace: iac
 spec:
   member: serviceAccount:iamcustomrole-dep-project@jvillarreal-sandbox-360616.iam.gserviceaccount.com
-  role: projects/jvillarreal-sandbox-360616/roles/iamcustomrolesampleproject
+  role: projects/jvillarreal-sandbox-360616/roles/jvillarreal-sandbox-360616
   resourceRef:
     kind: PubSubTopic
     name: containercluster-dep-vpcnative
