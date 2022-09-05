@@ -76,7 +76,7 @@ spec:
     - us-central1-b
     - us-central1-c
     - us-central1-f
-  nodeVersion: 1.22.10-gke.900
+  nodeVersion: 1.21.13-gke.900
   notificationConfig:
     pubsub:
       enabled: true
