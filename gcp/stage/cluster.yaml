@@ -18,14 +18,14 @@ spec:
     - us-central1-b
     - us-central1-c
     - us-central1-f
-  loggingService: "logging.googleapis.com/kubernetes"
-  monitoringConfig:
-    enableComponents:
-    - SYSTEM_COMPONENTS
-    - APISERVER
-    - CONTROLLER_MANAGER
-    - SCHEDULER
-    - WORKLOADS
+  # loggingService: "logging.googleapis.com/kubernetes"
+  # monitoringConfig:
+  #   enableComponents:
+  #   - SYSTEM_COMPONENTS
+  #   - APISERVER
+  #   - CONTROLLER_MANAGER
+  #   - SCHEDULER
+  #   - WORKLOADS
   workloadIdentityConfig:
     # Workload Identity supports only a single namespace based on your project name.
     # Replace ${PROJECT_ID?} below with your project ID.
