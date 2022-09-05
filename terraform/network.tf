@@ -33,37 +33,9 @@ resource "google_compute_firewall" "gke-net-firewall" {
   network  = google_compute_network.vpc.name
   priority = 1000
   allow {
-    protocol = "all"
-    ports    = []
+    protocol = "TCP"
+    ports    = [31899]
   }
-  target_tags = ["vpn"]
+  target_tags = ["default-idp"]
   # target_service_accounts = ["terraform-argocd@crisp-build.iam.gserviceaccount.com",]
 }
-
-# #Prod - Dev Network Peering
-# resource "google_compute_network_peering" "peering1" {
-#   name         = "build-cicd-peering"
-#   network      = google_compute_network.vpc.self_link
-#   peer_network = google_compute_network.vpc-dev.self_link
-# }
-
-# # Private DNS with forwarding
-# resource "google_dns_managed_zone" "wg-fwd-dns-zone" {
-#   name        = "e2etesting"
-#   dns_name    = "motiion-argo.local."
-#   description = "DNS forwarder for crisp-build-e2e-testing GKE cluster"
-
-#   visibility = "private"
-#   private_visibility_config {
-#     networks {
-#       network_url = google_compute_network.vpc-dev.id
-#     }
-#   }
-
-#   forwarding_config {
-#     target_name_servers {
-#       forwarding_path = "private"
-#       ipv4_address    = google_compute_address.internal_with_subnet_and_address.address
-#     }
-#   }
-# }

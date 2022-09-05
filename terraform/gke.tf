@@ -13,6 +13,12 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = true
   subnetwork               = google_compute_subnetwork.gke.name
   initial_node_count       = 1
+  private_cluster_config {
+    enable_private_endpoint = false
+    enable_private_nodes    = false
+    # master_ipv4_cidr_block = "${lookup(var.master, "master_ipv4_cidr_block", "")}"
+  }
+
   addons_config {
     cloudrun_config {
       disabled = true
@@ -52,7 +58,6 @@ resource "google_container_node_pool" "primary_node" {
   location = var.gcp_region
   cluster  = google_container_cluster.primary.name
   # node_count = var.gke_num_nodes
-
   autoscaling {
     min_node_count = var.autoscale_min_node
     max_node_count = var.autoscale_max_node
@@ -70,11 +75,11 @@ resource "google_container_node_pool" "primary_node" {
       node_metadata = "GKE_METADATA_SERVER"
     }
     service_account = google_service_account.idp-robot.email
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/monitoring",
-      "https://www.googleapis.com/auth/devstorage.read_only",
-    ]
+    # oauth_scopes = [
+    #   "https://www.googleapis.com/auth/logging.write", 
+    #   "https://www.googleapis.com/auth/monitoring",
+    #   "https://www.googleapis.com/auth/devstorage.read_only",
+    # ]
 
     machine_type = var.machine_type
   }
@@ -82,13 +87,13 @@ resource "google_container_node_pool" "primary_node" {
 }
 
 # terraform import google_gke_hub_feature.feature projects/jvillarreal-sandbox-360616/locations/global/features/configmanagement
-resource "google_gke_hub_feature" "feature" {
+resource "google_gke_hub_feature" "feature" { 
   name     = "configmanagement"
   location = "global"
   provider = google-beta
 }
 
-resource "google_gke_hub_membership" "membership" {
+resource "google_gke_hub_membership" "membership" { 
   membership_id = var.cluster_name
   endpoint {
     gke_cluster {

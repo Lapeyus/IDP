@@ -17,6 +17,13 @@ variable "pod_cidr" {
 variable "services_cidr" {
   type = string
 }
+variable "master" {
+  type    = map
+  default = {
+    "master_ipv4_cidr_block" = "186.15.108.251/28"
+  }
+}
+
 variable "gke_username" {
   type        = string
   description = "GKE username"
