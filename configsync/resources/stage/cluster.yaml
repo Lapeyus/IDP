@@ -2,9 +2,10 @@
 apiVersion: container.cnrm.cloud.google.com/v1beta1
 kind: ContainerCluster
 metadata:
+  annotations:
+    cnrm.cloud.google.com/remove-default-node-pool: "true"
   labels:
-    availability: high
-    target-audience: production
+    managed-by-cnrm : "true"
   name: containercluster-sample-vpcnative
   namespace: iac
 spec:
@@ -25,8 +26,6 @@ spec:
     - CONTROLLER_MANAGER
     - SCHEDULER
     - WORKLOADS
-    managedPrometheus:
-      enabled: boolean
   workloadIdentityConfig:
     # Workload Identity supports only a single namespace based on your project name.
     # Replace ${PROJECT_ID?} below with your project ID.
@@ -80,6 +79,7 @@ apiVersion: container.cnrm.cloud.google.com/v1beta1
 kind: ContainerNodePool
 metadata:
   name: containernodepool-sample-soletenancy
+  namespace: iac
 spec:
   location: us-central1-b
   autoscaling:
@@ -96,6 +96,7 @@ apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeNodeGroup
 metadata:
   name: containercluster-sample-vpcnative
+  namespace: iac
 spec:
   description: A single sole-tenant node in the us-central1-b zone.
   size: 1
@@ -107,6 +108,7 @@ apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeNodeTemplate
 metadata:
   name: containercluster-sample-vpcnative
+  namespace: iac
 spec:
   region: us-central1
   nodeType: n1-node-96-624
