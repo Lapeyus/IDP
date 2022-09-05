@@ -17,6 +17,16 @@ spec:
     - us-central1-b
     - us-central1-c
     - us-central1-f
+  loggingService: "logging.googleapis.com/kubernetes"
+  monitoringConfig:
+    enableComponents:
+    - SYSTEM_COMPONENTS
+    - APISERVER
+    - CONTROLLER_MANAGER
+    - SCHEDULER
+    - WORKLOADS
+    managedPrometheus:
+      enabled: boolean
   workloadIdentityConfig:
     # Workload Identity supports only a single namespace based on your project name.
     # Replace ${PROJECT_ID?} below with your project ID.
@@ -65,3 +75,38 @@ spec:
     enabled: true
   verticalPodAutoscaling:
     enabled: true
+---
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerNodePool
+metadata:
+  name: containernodepool-sample-soletenancy
+spec:
+  location: us-central1-b
+  autoscaling:
+    minNodeCount: 1
+    maxNodeCount: 3
+  nodeConfig:
+    machineType: n1-standard-2
+    nodeGroupRef:
+      name: containercluster-sample-vpcnative
+  clusterRef:
+    name: containercluster-sample-vpcnative
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeNodeGroup
+metadata:
+  name: containercluster-sample-vpcnative
+spec:
+  description: A single sole-tenant node in the us-central1-b zone.
+  size: 1
+  nodeTemplateRef:
+    name: containercluster-sample-vpcnative
+  zone: us-central1-b
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeNodeTemplate
+metadata:
+  name: containercluster-sample-vpcnative
+spec:
+  region: us-central1
+  nodeType: n1-node-96-624
