@@ -6,7 +6,7 @@ metadata:
     cnrm.cloud.google.com/remove-default-node-pool: "true"
   labels:
     managed-by-cnrm : "true"
-  name: containercluster-sample-vpcnative
+  name: containercluster-vpcnative
   namespace: iac
 spec:
   description: A large regional VPC-native cluster set up with special networking considerations.
@@ -88,26 +88,26 @@ spec:
   nodeConfig:
     machineType: n1-standard-2
     nodeGroupRef:
-      name: containercluster-sample-vpcnative
+      name: containercluster-vpcnative
   clusterRef:
-    name: containercluster-sample-vpcnative
+    name: containercluster-vpcnative
 ---
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeNodeGroup
 metadata:
-  name: containercluster-sample-vpcnative
+  name: containercluster-vpcnative
   namespace: iac
 spec:
   description: A single sole-tenant node in the us-central1-b zone.
   size: 1
   nodeTemplateRef:
-    name: containercluster-sample-vpcnative
+    name: containercluster-vpcnative
   zone: us-central1-b
 ---
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeNodeTemplate
 metadata:
-  name: containercluster-sample-vpcnative
+  name: containercluster-vpcnative
   namespace: iac
 spec:
   region: us-central1
