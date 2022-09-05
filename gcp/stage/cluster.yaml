@@ -61,7 +61,7 @@ spec:
   maintenancePolicy:
     dailyMaintenanceWindow:
       duration: PT4H0M0S
-      startTime: '00:01'
+      startTime: '00:00'
   monitoringConfig:
     enableComponents:
       - SYSTEM_COMPONENTS
