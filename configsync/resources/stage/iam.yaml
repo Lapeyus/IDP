@@ -24,7 +24,7 @@ spec:
   role: projects/jvillarreal-sandbox-360616/roles/iamcustomrolesampleproject
   resourceRef:
     kind: PubSubTopic
-    name: iamcustomrole-dep-project
+    name: containercluster-dep-vpcnative
     namespace: iac
     apiVersion: pubsub.cnrm.cloud.google.com
 ---
@@ -36,7 +36,16 @@ metadata:
   name: iamcustomrole-dep-project
   namespace: iac
 ---
-apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
-kind: PubSubTopic
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccountKey
 metadata:
-  name: iamcustomrole-dep-project
+  name: iamserviceaccountkey-sample
+  namespace: iac
+  labels:
+    label-one: "value-one"
+spec:
+  publicKeyType: TYPE_X509_PEM_FILE
+  keyAlgorithm: KEY_ALG_RSA_2048
+  privateKeyType: TYPE_GOOGLE_CREDENTIALS_FILE
+  serviceAccountRef:
+    name: iamcustomrole-dep-project
