@@ -1,0 +1,63 @@
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerCluster
+metadata:
+  name: containercluster-sample-vpcnative
+  namespace: iac
+spec:
+  description: A large regional VPC-native cluster
+  location: us-central1
+  initialNodeCount: 1
+  defaultMaxPodsPerNode: 16
+  nodeLocations:
+    - us-central1-a
+    - us-central1-b
+    - us-central1-c
+    - us-central1-f
+  workloadIdentityConfig:
+    # Workload Identity supports only a single namespace based on your project name.
+    # Replace jvillarreal-sandbox-360616 below with your project ID.
+    workloadPool: jvillarreal-sandbox-360616.svc.id.goog
+  networkingMode: VPC_NATIVE
+  networkRef:
+    name: containercluster-dep-vpcnative
+  subnetworkRef:
+    name: containercluster-dep-vpcnative
+  ipAllocationPolicy:
+    servicesSecondaryRangeName: servicesrange
+    clusterSecondaryRangeName: clusterrange
+  clusterAutoscaling:
+    enabled: true
+    autoscalingProfile: BALANCED
+    resourceLimits:
+    - resourceType: cpu
+      maximum: 100
+      minimum: 10
+    - resourceType: memory
+      maximum: 1000
+      minimum: 100
+  maintenancePolicy:
+    dailyMaintenanceWindow:
+      startTime: 00:00
+  releaseChannel:
+    channel: STABLE
+  notificationConfig:
+    pubsub:
+      enabled: true
+      topicRef:
+        name: containercluster-dep-vpcnative
+  enableBinaryAuthorization: true
+  enableIntranodeVisibility: true
+  enableShieldedNodes: true
+  addonsConfig:
+    networkPolicyConfig:
+      disabled: false
+    dnsCacheConfig:
+      enabled: true
+    configConnectorConfig:
+      enabled: true
+  networkPolicy:
+    enabled: true
+  podSecurityPolicyConfig:
+    enabled: true
+  verticalPodAutoscaling:
+    enabled: true
