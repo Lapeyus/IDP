@@ -1,0 +1,20 @@
+---
+apiVersion: container.cnrm.cloud.google.com/v1beta1
+kind: ContainerNodePool
+metadata:
+  name: containernodepool-soletenancy
+  namespace: iac
+spec:
+  autoscaling:
+    maxNodeCount: 2
+    minNodeCount: 1
+  clusterRef:
+    name: containercluster-vpcnative
+  location: us-central1-b
+  nodeConfig:
+    machineType: n1-standard-2
+    nodeGroupRef:
+      name: containercluster-vpcnative
+    tags:
+      - default-idp
+      - vpn
