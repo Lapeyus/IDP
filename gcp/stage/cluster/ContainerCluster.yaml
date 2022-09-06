@@ -52,18 +52,18 @@ spec:
     servicesIpv4CidrBlock: 10.3.0.0/16
     servicesSecondaryRangeName: servicesrange
   location: us-central1
-  loggingConfig:
-    enableComponents:
-      - SYSTEM_COMPONENTS
-      - WORKLOADS
+  # loggingConfig:
+  #   enableComponents:
+  #     - SYSTEM_COMPONENTS
+  #     - WORKLOADS
   loggingService: logging.googleapis.com/kubernetes
   maintenancePolicy:
     dailyMaintenanceWindow:
       duration: PT4H0M0S
       startTime: '00:00'
-  monitoringConfig:
-    enableComponents:
-      - SYSTEM_COMPONENTS
+  # monitoringConfig:
+  #   enableComponents:
+  #     - SYSTEM_COMPONENTS
   monitoringService: monitoring.googleapis.com/kubernetes
   networkPolicy:
     enabled: true
