@@ -56,7 +56,7 @@ spec:
   #   enableComponents:
   #     - SYSTEM_COMPONENTS
   #     - WORKLOADS
-  loggingService: logging.googleapis.com/kubernetes
+  # loggingService: logging.googleapis.com/kubernetes
   maintenancePolicy:
     dailyMaintenanceWindow:
       duration: PT4H0M0S
@@ -64,7 +64,7 @@ spec:
   # monitoringConfig:
   #   enableComponents:
   #     - SYSTEM_COMPONENTS
-  monitoringService: monitoring.googleapis.com/kubernetes
+  # monitoringService: monitoring.googleapis.com/kubernetes
   networkPolicy:
     enabled: true
   networkRef:
