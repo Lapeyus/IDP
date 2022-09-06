@@ -5,13 +5,13 @@ metadata:
   name: containernodepool-sample-soletenancy
   namespace: iac
 spec:
-  location: us-central1-b
   autoscaling:
-    minNodeCount: 1
     maxNodeCount: 3
+    minNodeCount: 1
+  clusterRef:
+    name: containercluster-vpcnative
+  location: us-central1-b
   nodeConfig:
     machineType: n1-standard-2
     nodeGroupRef:
       name: containercluster-vpcnative
-  clusterRef:
-    name: containercluster-vpcnative
