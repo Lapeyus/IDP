@@ -3,19 +3,15 @@ apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeFirewall
 metadata:
   labels:
-    argocd.argoproj.io/instance: stage
-    label-one: value-one
+    label-one: "value-one"
   name: computefirewall-sample-allow
   namespace: iac
 spec:
   allow:
-    - ports:
-        - '80'
-      protocol: tcp
-  direction: INGRESS
+    - protocol: udp
+      ports:
+        - "31899"
   networkRef:
     name: containercluster-dep-vpcnative
-  priority: 1000
-  resourceID: computefirewall-sample-allow
-  sourceTags:
-    - web
+  targetTags:
+    - "default-idp"
