@@ -15,6 +15,3 @@ spec:
     machineType: n1-standard-2
     nodeGroupRef:
       name: containercluster-vpcnative
-    tags:
-      - default-idp
-      - vpn
