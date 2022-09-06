@@ -28,3 +28,4 @@ spec:
     autoUpgrade: true
   clusterRef:
     name: containercluster-vpcnative
+    namespace: iac
