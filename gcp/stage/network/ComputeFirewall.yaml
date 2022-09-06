@@ -10,8 +10,8 @@ spec:
   allow:
     - protocol: udp
       ports:
-        - "31899"
+        - "80"
   networkRef:
     name: containercluster-dep-vpcnative
-  targetTags:
-    - "default-idp"
+  sourceTags:
+    - "web"
