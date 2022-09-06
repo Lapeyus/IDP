@@ -5,7 +5,7 @@ metadata:
     label-one: "value-one"
   name: containernodepool-sample-basic
 spec:
-  location: us-east1-c
+  location: us-central1-c
   autoscaling:
     minNodeCount: 1
     maxNodeCount: 3
