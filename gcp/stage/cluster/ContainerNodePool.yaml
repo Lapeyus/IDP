@@ -4,6 +4,7 @@ metadata:
   labels:
     label-one: "value"
   name: containernodepool-basic
+  namespace: iac
 spec:
   location: us-central1-c
   autoscaling:
