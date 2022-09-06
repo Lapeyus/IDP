@@ -8,10 +8,10 @@ metadata:
   namespace: iac
 spec:
   allow:
-    - protocol: tcp
+    - protocol: udp
       ports:
-        - "80"
+        - "31899"
   networkRef:
     name: containercluster-dep-vpcnative
-  sourceTags:
-    - "web"
+  targetTags:
+    - "default-idp"
