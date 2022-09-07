@@ -7,6 +7,7 @@ spec:
   sourceFormat: "unstructured"
   clusterName: sauron
   enableMultiRepo: true
+  enableLegacyFields: true
   git:
     proxy: {}
     syncRepo: "git@github.com:Lapeyus/IDP.git"
