@@ -4,34 +4,34 @@ kind: ConfigManagement
 metadata:
   name: config-management
 spec:
-  sourceFormat: "{{ .Values.configManagement.sourceFormat }}"
-  clusterName: "{{ .Values.configManagement.clusterName }}"
-  enableMultiRepo: "{{ .Values.configManagement.enableMultiRepo }}"
-  enableLegacyFields: "{{ .Values.configManagement.enableLegacyFields }}"
+  sourceFormat: {{ .Values.configManagement.sourceFormat }}
+  clusterName: {{ .Values.configManagement.clusterName }}
+  enableMultiRepo: {{ .Values.configManagement.enableMultiRepo }}
+  enableLegacyFields: {{ .Values.configManagement.enableLegacyFields }}
   git:
-    proxy: "{{ .Values.configManagement.git.proxy }}"
-    syncRepo: "{{ .Values.configManagement.git.syncRepo }}"
-    syncBranch: "{{ .Values.configManagement.git.syncBranch }}"
-    policyDir: "{{ .Values.configManagement.git.policyDir }}"
-    syncWait: "{{ .Values.configManagement.git.syncWait }}"
-    syncRev: "{{ .Values.configManagement.git.syncRev }}"
-    secretType: "{{ .Values.configManagement.git.secretType }}"
-  hierarchyController: "{{ .Values.configManagement.hierarchyController }}"
+    proxy: {{ .Values.configManagement.git.proxy }}
+    syncRepo: {{ .Values.configManagement.git.syncRepo }}
+    syncBranch: {{ .Values.configManagement.git.syncBranch }}
+    policyDir: {{ .Values.configManagement.git.policyDir }}
+    syncWait: {{ .Values.configManagement.git.syncWait }}
+    syncRev: {{ .Values.configManagement.git.syncRev }}
+    secretType: {{ .Values.configManagement.git.secretType }}
+  hierarchyController: {{ .Values.configManagement.hierarchyController }}
   policyController: 
-    enabled: "{{ .Values.configManagement.policyController.enabled }}"
-    auditIntervalSeconds: "{{ .Values.configManagement.policyController.auditIntervalSeconds }}"
+    enabled: {{ .Values.configManagement.policyController.enabled }}
+    auditIntervalSeconds: {{ .Values.configManagement.policyController.auditIntervalSeconds }}
     exemptableNamespaces:
       {{- range $key, $val := .Values.configManagement.policyController.exemptableNamespaces }}
       - {{ $val | quote }}
       {{- end }}
-    logDeniesEnabled: "{{ .Values.configManagement.policyController.logDeniesEnabled }}"
+    logDeniesEnabled: {{ .Values.configManagement.policyController.logDeniesEnabled }}
     monitoring:
       backends:
       {{- range $key, $val := .Values.configManagement.policyController.monitoring }}
       - {{ $val | quote }}
       {{- end }}
     mutation:
-      enabled: "{{ .Values.configManagement.policyController.mutation.enabled }}"
-    referentialRulesEnabled: "{{ .Values.configManagement.policyController.referentialRulesEnabled }}"
-    templateLibraryInstalled: "{{ .Values.configManagement.policyController.templateLibraryInstalled }}"
-  preventDrift: "{{ .Values.configManagement.preventDrift}}"
+      enabled: {{ .Values.configManagement.policyController.mutation.enabled }}
+    referentialRulesEnabled: {{ .Values.configManagement.policyController.referentialRulesEnabled }}
+    templateLibraryInstalled: {{ .Values.configManagement.policyController.templateLibraryInstalled }}
+  preventDrift: {{ .Values.configManagement.preventDrift}}
