@@ -1,0 +1,43 @@
+---
+apiVersion: configmanagement.gke.io/v1
+kind: ConfigManagement
+metadata:
+  name: config-management
+spec:
+  sourceFormat: "unstructured"
+  clusterName: sauron
+  enableMultiRepo: true
+  enableLegacyFields: true
+  git:
+    proxy: {}
+    syncRepo: "git@github.com:Lapeyus/IDP.git"
+    syncBranch: "main"
+    policyDir: "configsync/"
+    syncWait: 15
+    syncRev: "HEAD"
+    secretType: "ssh"
+  hierarchyController: {}
+  policyController:
+    enabled: false
+    auditIntervalSeconds: 15
+    exemptableNamespaces:
+    - anthos-identity-service
+    - cnrm-system
+    - config-management-monitoring
+    - config-management-system
+    - configconnector-operator-system
+    - gatekeeper-system
+    - kube-node-lease
+    - kube-public
+    - kube-system
+    - resource-group-system
+    logDeniesEnabled: true
+    monitoring:
+      backends:
+      - prometheus
+      - cloudmonitoring
+    mutation:
+      enabled: true
+    referentialRulesEnabled: true
+    templateLibraryInstalled: true
+  preventDrift: true
