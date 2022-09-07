@@ -1,0 +1,57 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    config.k8s.io/owning-inventory: config-management-system_root-sync
+    configmanagement.gke.io/cluster-name: sauron
+    configmanagement.gke.io/managed: enabled
+    configmanagement.gke.io/source-path: configsync/argo/infra.yaml
+    configmanagement.gke.io/token: 582b5e5034917ce96f4c0e5989982b1c67c3ccf3
+    configsync.gke.io/declared-fields: '{"f:metadata":{"f:annotations":{},"f:finalizers":{"v:\"resources-finalizer.argocd.argoproj.io\"":{}},"f:labels":{}},"f:spec":{"f:destination":{"f:name":{},"f:namespace":{},"f:server":{}},"f:project":{},"f:source":{"f:directory":{"f:recurse":{}},"f:path":{},"f:repoURL":{},"f:targetRevision":{}},"f:syncPolicy":{"f:automated":{"f:prune":{},"f:selfHeal":{}},"f:retry":{"f:backoff":{"f:duration":{},"f:factor":{},"f:maxDuration":{}},"f:limit":{}},"f:syncOptions":{}}}}'
+    configsync.gke.io/git-context: '{"repo":"git@github.com:Lapeyus/IDP.git","branch":"main","rev":"HEAD"}'
+    configsync.gke.io/manager: :root
+    configsync.gke.io/resource-id: argoproj.io_application_default_stage
+  creationTimestamp: "2022-09-05T23:07:30Z"
+  deletionGracePeriodSeconds: 0
+  deletionTimestamp: "2022-09-06T20:30:08Z"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  generation: 5104
+  labels:
+    app.kubernetes.io/managed-by: configmanagement.gke.io
+    configsync.gke.io/declared-version: v1alpha1
+  name: stage
+  namespace: default
+  resourceVersion: "1612789"
+  uid: aacaf940-c631-4b6d-9371-fc9515003c06
+spec:
+  destination:
+    name: ""
+    namespace: iac
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    directory:
+      jsonnet: {}
+      recurse: true
+    path: gcp/stage
+    repoURL: git@github.com:Lapeyus/IDP.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+      limit: 2
+    syncOptions:
+    - Validate=false
+    - RespectIgnoreDifferences=true
+    - PruneLast=true
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+    - Replace=false
+    - PrunePropagationPolicy=foreground
