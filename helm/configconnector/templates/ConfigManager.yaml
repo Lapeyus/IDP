@@ -9,14 +9,14 @@ spec:
   enableMultiRepo: {{ .Values.configManagement.enableMultiRepo }}
   enableLegacyFields: {{ .Values.configManagement.enableLegacyFields }}
   git:
-    proxy: {{ .Values.configManagement.git.proxy }}
+    # proxy: {{ .Values.configManagement.git.proxy }}
     syncRepo: {{ .Values.configManagement.git.syncRepo }}
     syncBranch: {{ .Values.configManagement.git.syncBranch }}
     policyDir: {{ .Values.configManagement.git.policyDir }}
     syncWait: {{ .Values.configManagement.git.syncWait }}
     syncRev: {{ .Values.configManagement.git.syncRev }}
     secretType: {{ .Values.configManagement.git.secretType }}
-  hierarchyController: {{ .Values.configManagement.hierarchyController }}
+  # hierarchyController: {{ .Values.configManagement.hierarchyController }}
   policyController: 
     enabled: {{ .Values.configManagement.policyController.enabled }}
     auditIntervalSeconds: {{ .Values.configManagement.policyController.auditIntervalSeconds }}
