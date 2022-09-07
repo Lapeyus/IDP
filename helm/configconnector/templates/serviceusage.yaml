@@ -1,11 +1,12 @@
+{{- $dot := . }}
 {{- range $key, $val :=  .Values.serviceusage }}
 ---
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
-  name: {{ $val }}
+  name: {{ $serviceusage }}
   namespace: default
 spec:
   projectRef:
-    external: projects/{{ .Values.projectRef }}
+    external: projects/{{ $dot.Values.projectRef }}
 {{- end }}
