@@ -4,40 +4,34 @@ kind: ConfigManagement
 metadata:
   name: config-management
 spec:
-  sourceFormat: "unstructured"
-  clusterName: sauron
-  enableMultiRepo: true
-  enableLegacyFields: true
+  sourceFormat: "{{ .Values.configManagement.sourceFormat }}"
+  clusterName: "{{ .Values.configManagement.clusterName }}"
+  enableMultiRepo: "{{ .Values.configManagement.enableMultiRepo }}"
+  enableLegacyFields: "{{ .Values.configManagement.enableLegacyFields }}"
   git:
-    proxy: {}
-    syncRepo: "git@github.com:Lapeyus/IDP.git"
-    syncBranch: "main"
-    policyDir: "configsync/"
-    syncWait: 15
-    syncRev: "HEAD"
-    secretType: "ssh"
-  hierarchyController: {}
-  policyController:
-    enabled: false
-    auditIntervalSeconds: 15
+    proxy: "{{ .Values.configManagement.git.proxy }}"
+    syncRepo: "{{ .Values.configManagement.git.syncRepo }}"
+    syncBranch: "{{ .Values.configManagement.git.syncBranch }}"
+    policyDir: "{{ .Values.configManagement.git.policyDir }}"
+    syncWait: "{{ .Values.configManagement.git.syncWait }}"
+    syncRev: "{{ .Values.configManagement.git.syncRev }}"
+    secretType: "{{ .Values.configManagement.git.secretType }}"
+  hierarchyController: "{{ .Values.configManagement.hierarchyController }}"
+  policyController: 
+    enabled: "{{ .Values.configManagement.policyController.enabled }}"
+    auditIntervalSeconds: "{{ .Values.configManagement.policyController.auditIntervalSeconds }}"
     exemptableNamespaces:
-    - anthos-identity-service
-    - cnrm-system
-    - config-management-monitoring
-    - config-management-system
-    - configconnector-operator-system
-    - gatekeeper-system
-    - kube-node-lease
-    - kube-public
-    - kube-system
-    - resource-group-system
-    logDeniesEnabled: true
+      {{- range $key, $val := .Values.configManagement.policyController.exemptableNamespaces }}
+      - {{ $val | quote }}
+      {{- end }}
+    logDeniesEnabled: "{{ .Values.configManagement.policyController.logDeniesEnabled }}"
     monitoring:
       backends:
-      - prometheus
-      - cloudmonitoring
+      {{- range $key, $val := .Values.configManagement.policyController.monitoring }}
+      - {{ $val | quote }}
+      {{- end }}
     mutation:
-      enabled: true
-    referentialRulesEnabled: true
-    templateLibraryInstalled: true
-  preventDrift: true
+      enabled: "{{ .Values.configManagement.policyController.mutation.enabled }}"
+    referentialRulesEnabled: "{{ .Values.configManagement.policyController.referentialRulesEnabled }}"
+    templateLibraryInstalled: "{{ .Values.configManagement.policyController.templateLibraryInstalled }}"
+  preventDrift: "{{ .Values.configManagement.preventDrift}}"

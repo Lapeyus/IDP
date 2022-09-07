@@ -1,28 +1,12 @@
+{{- $dot := . }}
+{{- range $serviceusage := .Values.serviceusage }}
 ---
 apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
-  name: serviceusage.googleapis.com
+  name: {{ $serviceusage }}
   namespace: default
 spec:
   projectRef:
-    external: projects/jvillarreal-sandbox-360616
----
-apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
-kind: Service
-metadata:
-  name: secretmanager.googleapis.com
-  namespace: default
-spec:
-  projectRef:
-    external: projects/jvillarreal-sandbox-360616
----
-apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
-kind: Service
-metadata:
-  name: pubsub.googleapis.com
-  namespace: default
-spec:
-  projectRef:
-    external: projects/jvillarreal-sandbox-360616
-
+    external: projects/{{ .Values.projectRef }}
+{{- end }}
