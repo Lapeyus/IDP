@@ -8,7 +8,7 @@ spec:
   projectRef:
     # Replace jvillarreal-sandbox-360616 with your project ID
     external: "projects/jvillarreal-sandbox-360616"
-  region: "us-west2"
+  region: "us-central1"
   runtime: "nodejs8"
   sourceArchiveUrl: "gs://config-connector-samples/cloudfunctionsfunction/http_trigger.zip"
   entryPoint: "helloGET"
