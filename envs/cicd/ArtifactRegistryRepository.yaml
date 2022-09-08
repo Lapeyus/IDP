@@ -5,7 +5,7 @@ metadata:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
   name: artifactregistryrepository
   labels:
-    label-one: "value-one"
+    label-one: "value-x"
 spec:
   format: DOCKER
   location: "us-central1"

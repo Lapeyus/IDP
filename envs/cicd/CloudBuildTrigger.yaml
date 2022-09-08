@@ -5,7 +5,7 @@ metadata:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
   name: cloudbuildtrigger-idp
 spec:
-  description: Cloud Build Trigger for building the master branch of the GitHub repository at github.com/owner_name/repo_name
+  description: Cloud Build Trigger for building the master branch
   disabled: false
   github:
     owner: Lapeyus
@@ -37,23 +37,4 @@ spec:
               "."]
       - name: 'gcr.io/cloud-builders/docker'
         args: ['push', 
-              '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/artifactregistry.googleapis.com/${_SERVICE_NAME}:$COMMIT_SHA']
-              
-      # - id: "download_zip"
-      #   name: gcr.io/cloud-builders/gsutil
-      #   args: ["cp", "gs://mybucket/remotefile.zip", "localfile.zip"]
-      #   timeout: 300s
-      # - id: "build_package"
-      #   name: gcr.io/cloud-builders/go
-      #   args: ["build", "my_package"]
-      #   dir: directory
-      #   env:
-      #     - "ENV1=one"
-      #     - "ENV2=two"
-      #   secretEnv:
-      #     - "SECRET_ENV1"
-      #   timeout: 300s
-      # - id: "build_docker_image"
-      #   name: gcr.io/cloud-builders/docker
-      #   args: ["build", "-t", "gcr.io/$PROJECT_ID/${_SERVICE_NAME}:$COMMIT_SHA", "-f", "Dockerfile", "."]
-      #   timeout: 300s
+              'us-central1-docker.pkg.dev/$PROJECT_ID/artifactregistryrepository/${_SERVICE_NAME}:$COMMIT_SHA']
