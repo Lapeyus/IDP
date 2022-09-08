@@ -28,3 +28,8 @@ spec:
       limit: 2
     syncOptions:
     - Replace=false
+    - Validate=true
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    - ApplyOutOfSyncOnly=true
