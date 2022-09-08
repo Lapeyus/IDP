@@ -1,0 +1,41 @@
+apiVersion: cloudbuild.cnrm.cloud.google.com/v1beta1
+kind: CloudBuildTrigger
+metadata:
+  name: cloudbuildtrigger-sample-github
+spec:
+  description: Cloud Build Trigger for building the master branch of the GitHub repository at github.com/owner_name/repo_name
+  disabled: false
+  github:
+    owner: Lapeyus
+    name: IDP
+    push:
+      branch: main
+  ignoredFiles:
+    - "**/*.md"
+  includedFiles:
+    - "src/**"
+  substitutions:
+    "_SERVICE_NAME": "service-name"
+  build:
+    images: ["gcr.io/$PROJECT_ID/${_SERVICE_NAME}:$COMMIT_SHA"]
+    tags: ["team-a", "service-b"]
+    timeout: 1800s
+    step:
+      - id: "download_zip"
+        name: gcr.io/cloud-builders/gsutil
+        args: ["cp", "gs://mybucket/remotefile.zip", "localfile.zip"]
+        timeout: 300s
+      - id: "build_package"
+        name: gcr.io/cloud-builders/go
+        args: ["build", "my_package"]
+        dir: directory
+        env:
+          - "ENV1=one"
+          - "ENV2=two"
+        secretEnv:
+          - "SECRET_ENV1"
+        timeout: 300s
+      - id: "build_docker_image"
+        name: gcr.io/cloud-builders/docker
+        args: ["build", "-t", "gcr.io/$PROJECT_ID/${_SERVICE_NAME}:$COMMIT_SHA", "-f", "Dockerfile", "."]
+        timeout: 300s
