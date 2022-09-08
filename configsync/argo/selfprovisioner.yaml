@@ -27,4 +27,4 @@ spec:
         maxDuration: 3m0s
       limit: 2
     syncOptions:
-    - Replace=true
+    - Replace=false
