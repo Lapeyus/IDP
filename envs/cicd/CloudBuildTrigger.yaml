@@ -15,7 +15,7 @@ spec:
   ignoredFiles:
     - "**/*.md"
   includedFiles:
-    - "src/**"
+    - "/**"
     - "envs/**"
   substitutions:
     "_SERVICE_NAME": "service-name"
@@ -35,6 +35,9 @@ spec:
               '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/artifactregistry.googleapis.com/${_SERVICE_NAME}:$COMMIT_SHA', 
               "-f", "Dockerfile", 
               "."]
+      - name: 'gcr.io/cloud-builders/docker'
+        args: ['push', 
+              '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/artifactregistry.googleapis.com/${_SERVICE_NAME}:$COMMIT_SHA']
               
       # - id: "download_zip"
       #   name: gcr.io/cloud-builders/gsutil
