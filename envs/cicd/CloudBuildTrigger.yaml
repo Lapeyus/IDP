@@ -20,6 +20,7 @@ spec:
   substitutions:
     "_SERVICE_NAME": "service-name"
     "_LOCATION": "us-central1"
+    "_REGISTRY": "artifactregistryrepository"
   build:
     images: ["gcr.io/$PROJECT_ID/${_SERVICE_NAME}:$COMMIT_SHA"]
     tags: ["team-a", "service-b"]
@@ -32,9 +33,9 @@ spec:
               "."]
       - name: 'gcr.io/cloud-builders/docker'
         args: ['build', 
-              '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/artifactregistry.googleapis.com/${_SERVICE_NAME}:$COMMIT_SHA', 
+              '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA', 
               "-f", "Dockerfile", 
               "."]
       - name: 'gcr.io/cloud-builders/docker'
         args: ['push', 
-              'us-central1-docker.pkg.dev/$PROJECT_ID/artifactregistryrepository/${_SERVICE_NAME}:$COMMIT_SHA']
+              '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA']
