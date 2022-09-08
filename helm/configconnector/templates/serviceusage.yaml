@@ -5,9 +5,9 @@ apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
 kind: Service
 metadata:
   annotations:
-    # cnrm.cloud.google.com/deletion-policy: "abandon"
-    cnrm.cloud.google.com/disable-dependent-services: "true"
-    cnrm.cloud.google.com/disable-on-destroy: "true"
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+    cnrm.cloud.google.com/disable-on-destroy: "false"
   name: {{ $serviceusage }}
   namespace: default
 spec:
