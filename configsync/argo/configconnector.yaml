@@ -12,13 +12,6 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-      parameters:
-        - name: 'secrets[0].key'
-          value: clusters
-        - name: 'secrets[0].name'
-          value: clusters
-        - name: 'secrets[0].secretKey'
-          value: clusters
     path: helm/configconnector
     repoURL: git@github.com:Lapeyus/IDP.git
     targetRevision: HEAD
