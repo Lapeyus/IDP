@@ -14,8 +14,9 @@ spec:
       branch: main
   ignoredFiles:
     - "**/*.md"
-  # includedFiles:
-  #   - "src/**"
+  includedFiles:
+    - "src/**"
+    - "envs/**"
   su'bstitutions:
     "_SERVICE_NAME": "service-name"
     "_LOCATION": "us-central1"
