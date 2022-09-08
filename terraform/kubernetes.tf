@@ -77,6 +77,9 @@ resource "helm_release" "argo" {
   values = [
     "${file("manifests/argo-values.yaml")}"
   ]
+  depends_on = [
+    google_container_cluster.primary
+  ]
 }
 
 # # note this requires the terraform to be run regularly

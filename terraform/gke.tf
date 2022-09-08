@@ -91,6 +91,9 @@ resource "google_gke_hub_feature" "feature" {
   name     = "configmanagement"
   location = "global"
   provider = google-beta
+  depends_on = [
+    google_container_cluster.primary
+  ]
 }
 
 resource "google_gke_hub_membership" "membership" {
@@ -101,6 +104,9 @@ resource "google_gke_hub_membership" "membership" {
     }
   }
   provider = google-beta
+  depends_on = [
+    google_container_cluster.primary
+  ]
 }
 
 
@@ -138,4 +144,7 @@ resource "google_gke_hub_feature_membership" "feature_member" {
     }
   }
   provider = google-beta
+  depends_on = [
+    google_container_cluster.primary
+  ]
 }
