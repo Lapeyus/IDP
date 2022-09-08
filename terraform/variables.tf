@@ -18,7 +18,7 @@ variable "services_cidr" {
   type = string
 }
 variable "master" {
-  type    = map
+  type = map(any)
   default = {
     "master_ipv4_cidr_block" = "186.15.108.251/28"
   }

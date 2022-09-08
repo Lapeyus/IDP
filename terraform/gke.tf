@@ -87,13 +87,13 @@ resource "google_container_node_pool" "primary_node" {
 }
 
 # terraform import google_gke_hub_feature.feature projects/jvillarreal-sandbox-360616/locations/global/features/configmanagement
-resource "google_gke_hub_feature" "feature" { 
+resource "google_gke_hub_feature" "feature" {
   name     = "configmanagement"
   location = "global"
   provider = google-beta
 }
 
-resource "google_gke_hub_membership" "membership" { 
+resource "google_gke_hub_membership" "membership" {
   membership_id = var.cluster_name
   endpoint {
     gke_cluster {

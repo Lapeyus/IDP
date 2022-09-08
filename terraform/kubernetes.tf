@@ -26,8 +26,8 @@ resource "kubernetes_secret" "git-creds" {
   }
   depends_on = [
     google_container_cluster.primary,
-    google_gke_hub_feature.feature, 
-    google_gke_hub_membership.membership, 
+    google_gke_hub_feature.feature,
+    google_gke_hub_membership.membership,
     google_gke_hub_feature_membership.feature_member
   ]
 
