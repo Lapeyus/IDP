@@ -17,7 +17,7 @@ spec:
   includedFiles:
     - "src/**"
     - "envs/**"
-  su'bstitutions:
+  substitutions:
     "_SERVICE_NAME": "service-name"
     "_LOCATION": "us-central1"
   build:
