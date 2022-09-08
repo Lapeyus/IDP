@@ -3,7 +3,7 @@ kind: CloudBuildTrigger
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
-  name: cloudbuildtrigger-sample-github
+  name: cloudbuildtrigger-idp
 spec:
   description: Cloud Build Trigger for building the master branch of the GitHub repository at github.com/owner_name/repo_name
   disabled: false
