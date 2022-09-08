@@ -4,6 +4,7 @@ serviceusage:
   - serviceusage.googleapis.com
   - secretmanager.googleapis.com
   - pubsub.googleapis.com
+  - sourcerepo.googleapis.com
 configManagement:
   sourceFormat: "unstructured"
   clusterName: sauron
