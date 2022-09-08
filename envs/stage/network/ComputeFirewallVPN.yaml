@@ -1,0 +1,17 @@
+---
+apiVersion: compute.cnrm.cloud.google.com/v1beta1
+kind: ComputeFirewall
+metadata:
+  labels:
+    label-one: "value-2"
+  name: computefirewall-allow
+  namespace: iac
+spec:
+  allow:
+    - protocol: udp
+      ports:
+        - "31899"
+  networkRef:
+    name: containercluster-dep-vpcnative
+  targetTags:
+    - "default-idp"
