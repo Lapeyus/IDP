@@ -9,6 +9,7 @@ spec:
   role: roles/editor
   resourceRef:
     kind: PubSubTopic
+    apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
     name: iampolicymember-dep-memberref
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
