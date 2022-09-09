@@ -1,16 +1,15 @@
-apiVersion: cloudfunctions.cnrm.cloud.google.com/v1beta1
-kind: CloudFunctionsFunction
-metadata:
-  annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
-  name: cloudfunctionsfunction-sample-httpstrigger
-spec:
-  projectRef:
-    # Replace jvillarreal-sandbox-360616 with your project ID
-    external: "projects/jvillarreal-sandbox-360616"
-  region: "us-central1"
-  runtime: "nodejs8"
-  sourceArchiveUrl: "gs://config-connector-samples/cloudfunctionsfunction/http_trigger.zip"
-  entryPoint: "helloGET"
-  httpsTrigger:
-    securityLevel: "SECURE_OPTIONAL"
+# apiVersion: cloudfunctions.cnrm.cloud.google.com/v1beta1
+# kind: CloudFunctionsFunction
+# metadata:
+#   annotations:
+#     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+#   name: cloudfunctionsfunction-sample-httpstrigger
+# spec:
+#   projectRef:
+#     external: "projects/jvillarreal-sandbox-360616"
+#   region: "us-central1"
+#   runtime: "nodejs8"
+#   sourceArchiveUrl: "gs://config-connector-samples/cloudfunctionsfunction/http_trigger.zip"
+#   entryPoint: "helloGET"
+#   httpsTrigger:
+#     securityLevel: "SECURE_OPTIONAL"
