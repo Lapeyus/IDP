@@ -7,7 +7,7 @@ metadata:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
-  name: iampolicymember-sample-memberref
+  name: iampolicymember-sample-memberref2
 spec:
   memberFrom:
     serviceAccountRef:
