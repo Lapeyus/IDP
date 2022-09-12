@@ -43,11 +43,11 @@ spec:
     kind: PubSubTopic
     name: pubsubsubscription-dep
   member: user:joseph.villarreal@66degrees.com
-  role: roles/topics.attachSubscription
+  role: roles/pubsub.topics.attachSubscription
 
 
-# roles/topics.attachSubscription.create
-# roles/topics.attachSubscription.delete
-# roles/topics.attachSubscription.get
-# roles/topics.attachSubscription.list
-# roles/topics.attachSubscription.publish
+# roles/pubsub.topics.attachSubscription.create
+# roles/pubsub.topics.attachSubscription.delete
+# roles/pubsub.topics.attachSubscription.get
+# roles/pubsub.topics.attachSubscription.list
+# roles/pubsub.topics.attachSubscription.publish
