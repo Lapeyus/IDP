@@ -1,35 +1,34 @@
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPolicyMember
+kind: IAMPolicy
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
-  name: iampolicymember-memberreff
+  name: iampolicy-sample-workloadidentity
 spec:
-  # memberFrom:
-  #   serviceAccountRef:
-  #     name: devops-robot
-  member: serviceAccount:devops-robot@jvillarreal-sandbox-360616.iam.gserviceaccount.com
-  role: roles/editor
   resourceRef:
-    kind: PubSubTopic
-    apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
-    name:  pubsubsubscription-dep
+    kind: IAMServiceAccount
+    name: iampolicy-dep-workloadidentity
+  bindings:
+    - role: roles/iam.workloadIdentityUser
+      members:
+        # replace ${PROJECT_ID} with your project name
+        - serviceAccount:jvillarreal-sandbox-360616.svc.id.goog[default/iampolicy-dep-workloadidentity]
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPolicyMember
+kind: IAMServiceAccount
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
-  name: iampolicymember-memberref
+  name: iampolicy-dep-workloadidentity
 spec:
-  # memberFrom:
-  #   serviceAccountRef:
-  #     name: devops-robot
-  member: user:jvillarreal@qwinix.io
-  role: roles/editor
-  resourceRef:
-    kind: PubSubTopic
-    apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
-    name:  pubsubsubscription-dep
+  displayName: Example Service Account
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: iampolicy-dep-workloadidentity
+  annotations:
+    # replace jvillarreal-sandbox-360616 with your project name
+    iam.gke.io/gcp-service-account: iampolicy-dep-workloadidentity@jvillarreal-sandbox-360616.iam.gserviceaccount.com
 ...
