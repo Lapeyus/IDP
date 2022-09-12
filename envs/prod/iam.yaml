@@ -63,6 +63,6 @@ spec:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
     external: projects/jvillarreal-sandbox-360616
-  member: serviceAccount:serviceAccount:devops-robot@jvillarreal-sandbox.iam.gserviceaccount.com
+  member: user:joseph.villarreal@66degrees.com
   role: roles/storage.admin
 ...
