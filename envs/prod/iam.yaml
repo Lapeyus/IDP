@@ -4,7 +4,7 @@ kind: IAMPolicyMember
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
-  name: 2
+  name: iampolicymember-memberreff
 spec:
   # memberFrom:
   #   serviceAccountRef:
