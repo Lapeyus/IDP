@@ -29,18 +29,6 @@ spec:
         - user:joseph.villarreal@66degrees.com
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPolicyMember
-metadata:
-  name: test-iampolicymember
-spec:
-  resourceRef:
-    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-    kind: Project
-    external: projects/jvillarreal-sandbox-360616
-  member: serviceAccount:devops-robot@jvillarreal-sandbox.iam.gserviceaccount.com
-  role: roles/storage.admin
----
-apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
 metadata:
   name: iampartialpolicy-sample-project
@@ -58,4 +46,16 @@ spec:
     #     - memberFrom:
     #         serviceAccountRef:
     #           name: joseph
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: test-iampolicymember
+spec:
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: projects/jvillarreal-sandbox-360616
+  member: serviceAccount:devops-robot@jvillarreal-sandbox.iam.gserviceaccount.com
+  role: roles/storage.admin
 ...
