@@ -6,9 +6,10 @@ metadata:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
   name: iampolicymember-sample-memberref
 spec:
-  memberFrom:
-    serviceAccountRef:
-      name: devops-robot
+  # memberFrom:
+  #   serviceAccountRef:
+  #     name: devops-robot
+  member: serviceAccount:devops-robot@jvillarreal-sandbox-360616.iam.gserviceaccount.com
   role: roles/editor
   resourceRef:
     kind: PubSubTopic
