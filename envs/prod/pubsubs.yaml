@@ -43,7 +43,7 @@ spec:
     kind: PubSubTopic
     name: pubsubsubscription-dep
   member: user:joseph.villarreal@66degrees.com
-  role: roles/pubsub.topics.attachSubscription
+  role: roles/pubsub.editor
 
 
 # roles/pubsub.topics.attachSubscription.create
