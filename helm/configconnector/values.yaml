@@ -1,6 +1,7 @@
 projectRef: jvillarreal-sandbox-360616
 serviceAccount: devops-robot
 serviceusage:
+  - cloudbilling.googleapis.com
   - serviceusage.googleapis.com
   - secretmanager.googleapis.com
   - pubsub.googleapis.com
