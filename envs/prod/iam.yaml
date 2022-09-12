@@ -13,7 +13,7 @@ metadata:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
   name: iamcustomrolesampleproject2
 spec:
-  title: Example Project-Level Custom Role
+  title: CustomRole
   description: This role only contains two permissions - publish and update
   permissions:
     - pubsub.topics.publish
