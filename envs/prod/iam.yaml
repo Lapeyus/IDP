@@ -22,4 +22,20 @@ metadata:
   name: iampolicy-dep-workloadidentity
   annotations:
     iam.gke.io/gcp-service-account: devops-robot@jvillarreal-sandbox-360616.iam.gserviceaccount.com
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicy
+metadata:
+  labels:
+    label-one: value-one
+  name: iampolicy-sample-pubsubadmin
+spec:
+  resourceRef:
+    kind: PubSubTopic
+    name: pubsubsubscription-dep
+    apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+  bindings:
+    - role: roles/editor
+      members:
+        - serviceAccount:devops-robot@jvillarreal-sandbox-360616.iam.gserviceaccount.com
 ...
