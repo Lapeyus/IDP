@@ -30,3 +30,24 @@ spec:
   deadLetterPolicy:
     deadLetterTopicRef:
       name: pubsubsubscription-dep2
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+  name: xxx
+spec:
+  resourceRef:
+    apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+    kind: PubSubTopic
+    name: pubsubsubscription-dep
+  member: user:joseph.villarreal@66degrees.com
+  role: roles/topics.attachSubscription
+
+
+# roles/topics.attachSubscription.create
+# roles/topics.attachSubscription.delete
+# roles/topics.attachSubscription.get
+# roles/topics.attachSubscription.list
+# roles/topics.attachSubscription.publish
