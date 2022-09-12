@@ -45,7 +45,7 @@ spec:
   bindings:
     - role: roles/storage.admin
       members:
-        - member: serviceAccount:serviceAccount:devops-robot@jvillarreal-sandbox.iam.gserviceaccount.com
+        - member: serviceAccount:devops-robot@jvillarreal-sandbox.iam.gserviceaccount.com
     # - role: roles/editor
     #   members:
     #     - memberFrom:
