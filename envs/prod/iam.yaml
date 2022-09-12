@@ -46,6 +46,7 @@ metadata:
   name: iampartialpolicy-sample-project
 spec:
   resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
     name: jvillarreal-sandbox-360616
   bindings:
