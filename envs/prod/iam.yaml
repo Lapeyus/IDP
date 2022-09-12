@@ -38,4 +38,5 @@ spec:
     - role: roles/editor
       members:
         - serviceAccount:devops-robot@jvillarreal-sandbox-360616.iam.gserviceaccount.com
+        - user:joseph.villarreal@66degrees.com
 ...
