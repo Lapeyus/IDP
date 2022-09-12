@@ -40,7 +40,8 @@ spec:
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
-    name: jvillarreal-sandbox-360616
+    # name: jvillarreal-sandbox-360616
+    external: projects/jvillarreal-sandbox-360616
   bindings:
     - role: roles/storage.admin
       members:
@@ -62,6 +63,6 @@ spec:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
     external: projects/jvillarreal-sandbox-360616
-  member: serviceAccount:devops-robot@jvillarreal-sandbox.iam.gserviceaccount.com
+  member: serviceAccount:serviceAccount:devops-robot@jvillarreal-sandbox.iam.gserviceaccount.com
   role: roles/storage.admin
 ...
