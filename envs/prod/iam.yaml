@@ -4,7 +4,7 @@ kind: IAMCustomRole
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
-  name: iamcustomrolesampleproject
+  name: iamcustomrolesampleproject2
 spec:
   title: Example Project-Level Custom Role
   description: This role only contains two permissions - publish and update
