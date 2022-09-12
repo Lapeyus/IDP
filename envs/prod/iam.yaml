@@ -9,7 +9,7 @@ spec:
   resourceRef:
     kind: IAMServiceAccount
     name: iampolicy-dep-workloadidentity
-    api: iam.cnrm.cloud.google.com/v1beta1
+    apiVersion: iam.cnrm.cloud.google.com/v1beta1
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
