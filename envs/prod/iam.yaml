@@ -16,6 +16,8 @@ spec:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicy
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
   name: iampolicy-sample-pubsubadmin
 spec:
   resourceRef:
@@ -31,6 +33,8 @@ spec:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
   name: iampartialpolicy-sample-project
 spec:
   resourceRef:
@@ -50,6 +54,8 @@ spec:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
   name: test-iampolicymember
 spec:
   resourceRef:
