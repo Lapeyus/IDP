@@ -12,6 +12,14 @@ resource "google_project_iam_binding" "idp-robot" {
   ]
 }
 
+resource "google_project_iam_binding" "idp-robot-billing" {
+  project = var.gcp_project
+  role    = "roles/billing.user"
+  members = [
+    "serviceAccount:${google_service_account.idp-robot.email}"
+  ]
+}
+
 # " binding between the SA & the predefined Kubernetes service account that Config Connector runs"
 resource "google_service_account_iam_binding" "workloadIdentityUser" {
   service_account_id = google_service_account.idp-robot.id
