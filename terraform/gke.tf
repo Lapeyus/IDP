@@ -1,22 +1,41 @@
 # # GKE cluster
 resource "google_container_cluster" "primary" {
-  provider                 = google-beta
-  enable_kubernetes_alpha  = false
-  enable_legacy_abac       = false
-  enable_shielded_nodes    = false
-  location                 = var.gcp_region
-  logging_service          = "logging.googleapis.com/kubernetes"
-  monitoring_service       = "monitoring.googleapis.com/kubernetes"
-  name                     = var.cluster_name
-  network                  = google_compute_network.vpc.name
-  project                  = var.gcp_project
-  remove_default_node_pool = true
-  subnetwork               = google_compute_subnetwork.gke.name
-  initial_node_count       = 1
+  provider                  = google-beta
+  enable_kubernetes_alpha   = false
+  enable_legacy_abac        = false
+  enable_shielded_nodes     = false
+  location                  = var.gcp_region
+  logging_service           = "logging.googleapis.com/kubernetes"
+  monitoring_service        = "monitoring.googleapis.com/kubernetes"
+  name                      = var.cluster_name
+  network                   = google_compute_network.vpc.name
+  node_locations            = ["us-central1-a", "us-central1-b", "us-central1-f"]
+  node_version              = "1.22.11-gke.400"
+  project                   = var.gcp_project
+  remove_default_node_pool  = true
+  subnetwork                = google_compute_subnetwork.gke.name
+  initial_node_count        = 1
+  default_max_pods_per_node = 110
+  cluster_autoscaling {
+    autoscaling_profile = "BALANCED"
+    enabled             = false
+  }
   private_cluster_config {
     enable_private_endpoint = false
     enable_private_nodes    = false
     # master_ipv4_cidr_block = "${lookup(var.master, "master_ipv4_cidr_block", "")}"
+  }
+  database_encryption {
+    state = "DECRYPTED"
+  }
+  default_snat_status {
+    disabled = false
+  }
+  monitoring_config {
+    enable_components = ["SYSTEM_COMPONENTS"]
+  }
+  logging_config {
+    enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS"]
   }
 
   addons_config {
@@ -26,6 +45,10 @@ resource "google_container_cluster" "primary" {
     config_connector_config {
       enabled = true
     }
+    gce_persistent_disk_csi_driver_config {
+      enabled = true
+    }
+
     horizontal_pod_autoscaling {
       disabled = false
     }
@@ -42,6 +65,18 @@ resource "google_container_cluster" "primary" {
   }
   identity_service_config {
     enabled = true
+  }
+
+  notification_config {
+    pubsub {
+      enabled = false
+    }
+  }
+  pod_security_policy_config {
+    enabled = false
+  }
+  release_channel {
+    channel = "REGULAR"
   }
   vertical_pod_autoscaling {
     enabled = true
@@ -83,7 +118,9 @@ resource "google_container_node_pool" "primary_node" {
 
     machine_type = var.machine_type
   }
-
+  depends_on = [
+    google_container_cluster.primary
+  ]
 }
 
 # terraform import google_gke_hub_feature.feature projects/jvillarreal-sandbox-360616/locations/global/features/configmanagement

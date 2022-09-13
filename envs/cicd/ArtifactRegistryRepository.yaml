@@ -3,9 +3,9 @@ kind: ArtifactRegistryRepository
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
-  name: artifactregistryrepository
   labels:
-    label-one: "value-x"
+    label-one: value-x
+  name: artifactregistryrepository
 spec:
   format: DOCKER
-  location: "us-central1"
+  location: us-central1

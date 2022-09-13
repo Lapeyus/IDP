@@ -25,11 +25,11 @@ spec:
         duration: 5s
         factor: 2
         maxDuration: 3m0s
-      limit: 2 
+      limit: 2
     syncOptions:
-    - Replace=false
-    - Validate=true
-    - CreateNamespace=true
-    - PrunePropagationPolicy=foreground
-    - PruneLast=true
-    - ApplyOutOfSyncOnly=true
+      - Replace=false
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - ApplyOutOfSyncOnly=true
