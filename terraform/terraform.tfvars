@@ -4,11 +4,11 @@ pod_cidr        = "10.116.0.0/14"
 services_cidr   = "10.120.0.0/20"
 
 # GCP Settings
-gcp_project = "jvillarreal-sandbox-360616"
+gcp_project = "jvillarreal-sandbox-demo"
 gcp_region  = "us-central1"
 
 #Service Account
-service_account = "idp-robot@jvillarreal-sandbox-360616.iam.gserviceaccount.com"
+service_account = "idp-robot@jvillarreal-sandbox-demo.iam.gserviceaccount.com"
 
 #GKE Settings
 gke_username = "username"
@@ -27,5 +27,5 @@ machine_type       = "e2-standard-8"
 
 
 #Bucket Settings
-bucket-name   = "jvillarreal-sandbox-360616-tfstate"
+bucket-name   = "jvillarreal-sandbox-demo-tfstate"
 storage-class = "REGIONAL"

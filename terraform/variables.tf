@@ -6,7 +6,7 @@ variable "gcp_region" {
 variable "gcp_project" {
   type        = string
   description = "GCP project name"
-  default     = "jvillarreal-sandbox-360616"
+  default     = "jvillarreal-sandbox-demo"
 }
 variable "subnetwork_cidr" {
   type = string

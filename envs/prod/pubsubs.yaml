@@ -3,21 +3,21 @@ apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
 kind: PubSubTopic
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
   name: pubsubsubscription-dep
 ---
 apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
 kind: PubSubTopic
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
   name: pubsubsubscription-dep2
 ---
 apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
 kind: PubSubSubscription
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
   labels:
     label-one: "value-one"
   name: pubsubsubscription-sample
@@ -35,7 +35,7 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
   name: xxx
 spec:
   resourceRef:
@@ -45,9 +45,9 @@ spec:
   member: user:joseph.villarreal@66degrees.com
   role: roles/pubsub.editor
 
-
-# roles/pubsub.topics.attachSubscription.create
-# roles/pubsub.topics.attachSubscription.delete
-# roles/pubsub.topics.attachSubscription.get
-# roles/pubsub.topics.attachSubscription.list
-# roles/pubsub.topics.attachSubscription.publish
+# roles/pubsub.admin
+# roles/pubsub.editor
+# roles/pubsub.publisher
+# roles/pubsub.serviceAgent
+# roles/pubsub.subscriber
+# roles/pubsub.viewer

@@ -1,4 +1,4 @@
-projectID: jvillarreal-sandbox-360616
+projectID: jvillarreal-sandbox
 # name of the cluster region
 clusterLocation: us-central1
 # name of the GKE cluster

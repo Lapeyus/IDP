@@ -2,11 +2,11 @@
 # kind: CloudFunctionsFunction
 # metadata:
 #   annotations:
-#     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+#     cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
 #   name: cloudfunctionsfunction-sample-httpstrigger
 # spec:
 #   projectRef:
-#     external: "projects/jvillarreal-sandbox-360616"
+#     external: "projects/jvillarreal-sandbox-demo"
 #   region: "us-central1"
 #   runtime: "nodejs8"
 #   sourceArchiveUrl: "gs://config-connector-samples/cloudfunctionsfunction/http_trigger.zip"

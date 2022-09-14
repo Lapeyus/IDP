@@ -1,4 +1,4 @@
-projectRef: jvillarreal-sandbox-360616
+projectRef: jvillarreal-sandbox-demo
 serviceAccount: devops-robot
 serviceusage:
   - cloudasset.googleapis.com

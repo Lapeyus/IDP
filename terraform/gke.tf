@@ -10,7 +10,6 @@ resource "google_container_cluster" "primary" {
   name                      = var.cluster_name
   network                   = google_compute_network.vpc.name
   node_locations            = ["us-central1-a", "us-central1-b", "us-central1-f"]
-  node_version              = "1.22.11-gke.400"
   project                   = var.gcp_project
   remove_default_node_pool  = true
   subnetwork                = google_compute_subnetwork.gke.name
@@ -31,13 +30,6 @@ resource "google_container_cluster" "primary" {
   default_snat_status {
     disabled = false
   }
-  monitoring_config {
-    enable_components = ["SYSTEM_COMPONENTS"]
-  }
-  logging_config {
-    enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS"]
-  }
-
   addons_config {
     cloudrun_config {
       disabled = true
@@ -123,7 +115,7 @@ resource "google_container_node_pool" "primary_node" {
   ]
 }
 
-# terraform import google_gke_hub_feature.feature projects/jvillarreal-sandbox-360616/locations/global/features/configmanagement
+# terraform import google_gke_hub_feature.feature projects/jvillarreal-sandbox-demo/locations/global/features/configmanagement
 resource "google_gke_hub_feature" "feature" {
   name     = "configmanagement"
   location = "global"

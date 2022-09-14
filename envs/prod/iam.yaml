@@ -10,7 +10,7 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMCustomRole
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
   name: iamcustomrolesampleproject2
 spec:
   title: CustomRole
@@ -24,7 +24,7 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicy
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
   name: iampolicy-sample-pubsubadmin
 spec:
   resourceRef:
@@ -34,8 +34,8 @@ spec:
   bindings:
     - role: roles/editor
       members:
-        - serviceAccount:devops-robot@jvillarreal-sandbox-360616.iam.gserviceaccount.com
-    # - role: projects/jvillarreal-sandbox-360616/roles/iamcustomrolesampleproject2
+        - serviceAccount:devops-robot@jvillarreal-sandbox-demo.iam.gserviceaccount.com
+    # - role: projects/jvillarreal-sandbox-demo/roles/iamcustomrolesampleproject2
     #   members:
     #     - user:joseph.villarreal@66degrees.com
 ---
@@ -43,14 +43,14 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
   name: iampartialpolicy-sample-project
 spec:
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
-    # name: jvillarreal-sandbox-360616
-    external: projects/jvillarreal-sandbox-360616
+    # name: jvillarreal-sandbox-demo
+    external: projects/jvillarreal-sandbox-demo
   bindings:
     - role: roles/storage.admin
       members:
@@ -65,13 +65,13 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
   name: test-iampolicymember
 spec:
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
-    external: projects/jvillarreal-sandbox-360616
+    external: projects/jvillarreal-sandbox-demo
   member: user:joseph.villarreal@66degrees.com
   role: roles/storage.admin
 ...

@@ -3,7 +3,7 @@ kind: SourceRepoRepository
 metadata:
   name: sourcereporepository-sample
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-360616
+    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
 spec:
   pubsubConfigs:
     - topicRef:
