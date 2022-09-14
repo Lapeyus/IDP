@@ -21,6 +21,7 @@ spec:
   resourceRef:
     kind: IAMServiceAccount
     name: secretmanager-workloadidentity
+    apiVersion: iam.googleapis.com/v1
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
