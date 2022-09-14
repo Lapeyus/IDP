@@ -30,7 +30,7 @@ spec:
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
-        - serviceAccount:[{{ .Values.projectID }}].svc.id.goog[{{ .Values.clusterNamespace }}/external-secrets-identity]
+        - serviceAccount:{{ .Values.projectID }}.svc.id.goog[{{ .Values.clusterNamespace }}/external-secrets-identity]
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
