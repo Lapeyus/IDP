@@ -1,0 +1,39 @@
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMServiceAccount
+metadata:
+  name: secretmanager-workloadidentity
+spec:
+  displayName: Secret Manager Service Account
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: secretmanager-workloadidentity
+  annotations:
+    iam.gke.io/gcp-service-account: secretmanager-workloadidentity@{{ .Values.projectID }}.iam.gserviceaccount.com
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicy
+metadata:
+  name: secretmanager-workloadidentity
+spec:
+  resourceRef:
+    kind: IAMServiceAccount
+    name: secretmanager-workloadidentity
+  bindings:
+    - role: roles/iam.workloadIdentityUser
+      members:
+        - serviceAccount:{{ .Values.projectID }}.svc.id.goog[default/secretmanager-workloadidentity]
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: iampolicymember-sample-projlevel
+spec:
+  member: serviceAccount:secretmanager-workloadidentity@{{ .Values.projectID }}.iam.gserviceaccount.com
+  role: roles/secretmanager.admin
+  resourceRef:
+    kind: Project
+    external: projects/{{ .Values.projectID }}
+
