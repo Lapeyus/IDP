@@ -45,7 +45,7 @@ spec:
   bindings:
   - members:
     - member: serviceAccount:external-secrets-identity@{{ .Values.projectID }}.iam.gserviceaccount.com
-    role: roles/secretmanager.admin
+    role: roles/editor
   - members:
     - member: serviceAccount:external-secrets-identity@{{ .Values.projectID }}.iam.gserviceaccount.com
     role: roles/secretmanager.secretAccessor
