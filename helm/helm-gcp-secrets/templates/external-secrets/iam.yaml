@@ -17,20 +17,6 @@ spec:
   displayName: Secret Manager Service Account
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPartialPolicy
-metadata:
-  name: external-secrets-identity
-spec:
-  resourceRef:
-    kind: Project
-    external: projects/{{ .Values.projectID }}
-    apiVersion: cloudresourcemanager.googleapis.com/v1beta1
-  bindings:
-    - role: roles/owner
-      members:
-        - member: serviceAccount:external-secrets-identity@{{ .Values.projectID }}.iam.gserviceaccount.com
----
-apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicy
 metadata:
   annotations:
@@ -45,4 +31,17 @@ spec:
     - role: roles/iam.workloadIdentityUser
       members:
         - serviceAccount:{{ .Values.projectID }}.svc.id.goog[{{ .Values.clusterNamespace }}/external-secrets-identity]
-
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPartialPolicy
+metadata:
+  name: external-secrets-identity
+spec:
+  resourceRef:
+    kind: Project
+    external: projects/{{ .Values.projectID }}
+    # apiVersion: cloudresourcemanager.googleapis.com/v1beta1
+  bindings:
+    - role: roles/owner
+      members:
+        - member: serviceAccount:external-secrets-identity@{{ .Values.projectID }}.iam.gserviceaccount.com
