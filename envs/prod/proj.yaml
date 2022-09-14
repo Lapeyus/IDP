@@ -1,13 +1,13 @@
-apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-kind: Folder
-metadata:
-  labels:
-    label-one: "value-one"
-  name: folder-sample-in-folder
-spec:
-  displayName: Config Connector Sample
-  folderRef:
-    external: "302633594206"
+# apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+# kind: Folder
+# metadata:
+#   labels:
+#     label-one: "value-one"
+#   name: folder-sample-in-folder
+# spec:
+#   displayName: Config Connector Sample
+#   folderRef:
+#     external: "302633594206"
 
 # ---
 # # Creates a Project resource to demonstrate how an IAMPolicy can reference a
