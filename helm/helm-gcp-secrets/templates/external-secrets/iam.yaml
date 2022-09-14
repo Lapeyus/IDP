@@ -16,7 +16,7 @@ metadata:
     iam.gke.io/gcp-service-account: secretmanager-workloadidentity@{{ .Values.projectID }}.iam.gserviceaccount.com
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
-kind: IAMPartialPolicy
+kind: IAMPolicy
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: {{ .Values.projectID }}
