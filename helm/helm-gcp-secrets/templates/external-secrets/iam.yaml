@@ -16,7 +16,7 @@ metadata:
 spec:
   displayName: Secret Manager Service Account
 ---
-apiVersion: iam.cnrm.cloud.google.com/v1beta1
+apiVersion: iam.cnrm.cloud.google.com/v1alpha1
 kind: IAMPolicy
 metadata:
   annotations:
@@ -24,13 +24,13 @@ metadata:
   name: secretmanager-workloadidentity
 spec:
   resourceRef:
-    kind: IAMServiceAccount
-    name: external-secrets-identity@{{ .Values.projectID }}.iam.gserviceaccount.com
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
+    kind: IAMServiceAccount
+    name: external-secrets-identity
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
-        - serviceAccount:{{ .Values.projectID }}.svc.id.goog[{{ .Values.clusterNamespace }}/external-secrets-identity]
+        - serviceAccount:[PROJECT_ID].svc.id.goog[{{ .Values.clusterNamespace }}/external-secrets-identity]
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
@@ -47,3 +47,20 @@ spec:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     external: 'projects/{{ .Values.projectID }}'
     kind: Project
+
+# ---
+# apiVersion: iam.cnrm.cloud.google.com/v1beta1
+# kind: IAMPolicy
+# metadata:
+#   annotations:
+#     cnrm.cloud.google.com/project-id: {{ .Values.projectID }}
+#   name: secretmanager-workloadidentity
+# spec:
+#   resourceRef:
+#     kind: IAMServiceAccount
+#     name: external-secrets-identity@{{ .Values.projectID }}.iam.gserviceaccount.com
+#     apiVersion: iam.cnrm.cloud.google.com/v1beta1
+#   bindings:
+#     - role: roles/iam.workloadIdentityUser
+#       members:
+#         - serviceAccount:{{ .Values.projectID }}.svc.id.goog[{{ .Values.clusterNamespace }}/external-secrets-identity]
