@@ -3,7 +3,7 @@ apiVersion: external-secrets.io/v1beta1
 kind: SecretStore
 metadata:
   name: remotesecretstore
-  namespace: {{ .Values.clusterNamespace }}     
+  namespace: {{ .Values.clusterNamespace }}
 spec:
   provider:
       gcpsm:
