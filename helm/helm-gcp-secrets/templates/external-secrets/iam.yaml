@@ -25,7 +25,7 @@ spec:
   resourceRef:
     kind: IAMServiceAccount
     name: secretmanager-workloadidentity
-    apiVersion: iam.googleapis.com/v1beta1
+    # apiVersion: iam.googleapis.com/v1beta1
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
@@ -43,5 +43,5 @@ spec:
   resourceRef:
     kind: Project
     external: projects/{{ .Values.projectID }}
-    apiVersion: cloudresourcemanager.googleapis.com/v1beta1
+    # apiVersion: cloudresourcemanager.googleapis.com/v1beta1
 
