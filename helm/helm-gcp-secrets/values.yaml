@@ -5,7 +5,7 @@ clusterLocation: us-central1
 clusterName: sauron
 clusterNamespace: default
 gcpServiceAccount: devops-robot
-refreshInterval: "10m"
+refreshInterval: "5s"
 secrets: []
   # - key: cluster
   #   name: cluster
