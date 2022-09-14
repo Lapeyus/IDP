@@ -1,77 +1,77 @@
-# # ---
-# # apiVersion: iam.cnrm.cloud.google.com/v1beta1
-# # kind: IAMServiceAccount
-# # metadata:
-# #   annotations:
-# #     cnrm.cloud.google.com/project-id: iampolicy-dep-external-project
-# #   name: iampolicy-dep-external-project
 # ---
 # apiVersion: iam.cnrm.cloud.google.com/v1beta1
-# kind: IAMCustomRole
+# kind: IAMServiceAccount
 # metadata:
 #   annotations:
-#     cnrm.cloud.google.com/project-id: config-conector-sample
-#   name: iamcustomrolesampleproject2
-# spec:
-#   title: CustomRole
-#   description: This role only contains two permissions - publish and update
-#   permissions:
-#     - pubsub.topics.publish
-#     - pubsub.topics.update
-#   stage: GA
-# ---
-# apiVersion: iam.cnrm.cloud.google.com/v1beta1
-# kind: IAMPolicy
-# metadata:
-#   annotations:
-#     cnrm.cloud.google.com/project-id: config-conector-sample
-#   name: iampolicy-sample-pubsubadmin
-# spec:
-#   resourceRef:
-#     kind: PubSubTopic
-#     name: pubsubsubscription-dep
-#     apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
-#   bindings:
-#     - role: roles/editor
-#       members:
-#         - serviceAccount:devops-robot@config-conector-sample.iam.gserviceaccount.com
-#     # - role: projects/config-conector-sample/roles/iamcustomrolesampleproject2
-#     #   members:
-#     #     - user:joseph.villarreal@66degrees.com
-# ---
-# apiVersion: iam.cnrm.cloud.google.com/v1beta1
-# kind: IAMPartialPolicy
-# metadata:
-#   annotations:
-#     cnrm.cloud.google.com/project-id: config-conector-sample
-#   name: iampartialpolicy-sample-project
-# spec:
-#   resourceRef:
-#     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-#     kind: Project
-#     # name: config-conector-sample
-#     external: projects/config-conector-sample
-#   bindings:
-#     - role: roles/storage.admin
-#       members:
-#         - member: serviceAccount:devops-robot@config-conector-sample.iam.gserviceaccount.com
-#     # - role: roles/editor
-#     #   members:
-#     #     - memberFrom:
-#     #         serviceAccountRef:
-#     #           name: joseph
-# ---
-# apiVersion: iam.cnrm.cloud.google.com/v1beta1
-# kind: IAMPolicyMember
-# metadata:
-#   annotations:
-#     cnrm.cloud.google.com/project-id: config-conector-sample
-#   name: test-iampolicymember
-# spec:
-#   resourceRef:
-#     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
-#     kind: Project
-#     external: projects/config-conector-sample
-#   member: user:joseph.villarreal@66degrees.com
-#   role: roles/storage.admin
-# ...
+#     cnrm.cloud.google.com/project-id: iampolicy-dep-external-project
+#   name: iampolicy-dep-external-project
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMCustomRole
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: config-conector-sample
+  name: iamcustomrolesampleproject2
+spec:
+  title: CustomRole
+  description: This role only contains two permissions - publish and update
+  permissions:
+    - pubsub.topics.publish
+    - pubsub.topics.update
+  stage: GA
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicy
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: config-conector-sample
+  name: iampolicy-sample-pubsubadmin
+spec:
+  resourceRef:
+    kind: PubSubTopic
+    name: pubsubsubscription-dep
+    apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+  bindings:
+    - role: roles/editor
+      members:
+        - serviceAccount:devops-robot@config-conector-sample.iam.gserviceaccount.com
+    # - role: projects/config-conector-sample/roles/iamcustomrolesampleproject2
+    #   members:
+    #     - user:joseph.villarreal@66degrees.com
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPartialPolicy
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: config-conector-sample
+  name: iampartialpolicy-sample-project
+spec:
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    # name: config-conector-sample
+    external: projects/config-conector-sample
+  bindings:
+    - role: roles/storage.admin
+      members:
+        - member: serviceAccount:devops-robot@config-conector-sample.iam.gserviceaccount.com
+    # - role: roles/editor
+    #   members:
+    #     - memberFrom:
+    #         serviceAccountRef:
+    #           name: joseph
+---
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: config-conector-sample
+  name: test-iampolicymember
+spec:
+  resourceRef:
+    apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+    kind: Project
+    external: projects/config-conector-sample
+  member: user:joseph.villarreal@66degrees.com
+  role: roles/storage.admin
+...

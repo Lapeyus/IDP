@@ -1,13 +1,13 @@
-# apiVersion: sourcerepo.cnrm.cloud.google.com/v1beta1
-# kind: SourceRepoRepository
-# metadata:
-#   name: sourcereporepository-sample
-#   annotations:
-#     cnrm.cloud.google.com/project-id: config-conector-sample
-# spec:
-#   pubsubConfigs:
-#     - topicRef:
-#         name: sourcereporepository-dep
-#       serviceAccountRef:
-#         name: sourcereporepository-dep
-#       messageFormat: JSON
+apiVersion: sourcerepo.cnrm.cloud.google.com/v1beta1
+kind: SourceRepoRepository
+metadata:
+  name: sourcereporepository-sample
+  annotations:
+    cnrm.cloud.google.com/project-id: config-conector-sample
+spec:
+  pubsubConfigs:
+    - topicRef:
+        name: sourcereporepository-dep
+      serviceAccountRef:
+        name: sourcereporepository-dep
+      messageFormat: JSON
