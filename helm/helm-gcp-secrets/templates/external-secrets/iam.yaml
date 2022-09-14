@@ -2,6 +2,8 @@
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMServiceAccount
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: {{ .Values.projectID }}
   name: secretmanager-workloadidentity
 spec:
   displayName: Secret Manager Service Account
@@ -16,6 +18,8 @@ metadata:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicy
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: {{ .Values.projectID }}
   name: secretmanager-workloadidentity
 spec:
   resourceRef:
@@ -30,6 +34,8 @@ spec:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: {{ .Values.projectID }}
   name: secretmanager-admin
 spec:
   member: serviceAccount:secretmanager-workloadidentity@{{ .Values.projectID }}.iam.gserviceaccount.com
