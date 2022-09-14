@@ -4,7 +4,7 @@ kind: ServiceAccount
 metadata:
   name: external-secrets-identity
   namespace: {{ .Values.clusterNamespace }}
-  annotations: #{{ .Values.gcpServiceAccount }}
+  annotations:
     iam.gke.io/gcp-service-account: "external-secrets-identity@{{ .Values.projectID }}.iam.gserviceaccount.com"
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
@@ -13,6 +13,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: {{ .Values.projectID }}
   name: external-secrets-identity
+  namespace: {{ .Values.clusterNamespace }}
 spec:
   displayName: Secret Manager Service Account
 ---
@@ -22,6 +23,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: {{ .Values.projectID }}
   name: external-secrets-identity
+  namespace: {{ .Values.clusterNamespace }}
 spec:
   resourceRef:
     apiVersion: iam.cnrm.cloud.google.com/v1beta1
@@ -30,7 +32,7 @@ spec:
   bindings:
     - role: roles/iam.workloadIdentityUser
       members:
-        - serviceAccount:{{ .Values.projectID }}.svc.id.goog[default/external-secrets-identity]
+        - serviceAccount:{{ .Values.projectID }}.svc.id.goog[{{ .Values.clusterNamespace }}/external-secrets-identity]
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
@@ -38,6 +40,7 @@ metadata:
   annotations:
     cnrm.cloud.google.com/project-id: {{ .Values.projectID }}
   name: external-secrets-identity
+  namespace: {{ .Values.clusterNamespace }}
 spec:
   bindings:
   - members:
