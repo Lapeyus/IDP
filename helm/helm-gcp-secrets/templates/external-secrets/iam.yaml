@@ -42,7 +42,7 @@ spec:
   bindings:
   - members:
     - member: serviceAccount:external-secrets-identity@{{ .Values.projectID }}.iam.gserviceaccount.com
-    role: roles/secretmanager.admin
+    role: roles/owner
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     external: 'projects/{{ .Values.projectID }}'
