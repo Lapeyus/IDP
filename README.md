@@ -1,3 +1,3 @@
 # IDP
-DevOps LeftShifting Internal Developer Platform (DIDP)
+DevOps Internal Developer Platform (DIDP)
 - self service platform

@@ -4,4 +4,4 @@ kind: PubSubTopic
 metadata:
   annotations:
     cnrm.cloud.google.com/project-id: config-conector-sample
-  name: sourcereporepository-dep
+  name: build-notificacions

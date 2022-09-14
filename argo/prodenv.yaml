@@ -13,7 +13,7 @@
 #     directory:
 #       jsonnet: {}
 #       recurse: true
-#     path: envs/prod
+#     path: helm/envs/prod
 #     repoURL: git@github.com:Lapeyus/IDP.git
 #     targetRevision: HEAD
 #   syncPolicy:
