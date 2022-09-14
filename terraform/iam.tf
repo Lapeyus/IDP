@@ -33,8 +33,8 @@ resource "google_service_account_iam_binding" "workloadIdentityUser" {
   service_account_id = google_service_account.idp-robot.id
   role               = "roles/iam.workloadIdentityUser"
   members = [
-    "serviceAccount:${var.gcp_project}.svc.id.goog[cnrm-system/cnrm-controller-manager]",
-    "serviceAccount:${var.gcp_project}.svc.id.goog[default/external-secrets-identity]"
+    "serviceAccount:${var.gcp_project}.svc.id.goog[cnrm-system/cnrm-controller-manager]"
+    # "serviceAccount:${var.gcp_project}.svc.id.goog[default/external-secrets-identity]"
   ]
   depends_on = [
     google_container_cluster.primary,
