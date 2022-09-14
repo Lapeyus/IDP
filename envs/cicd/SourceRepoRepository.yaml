@@ -9,5 +9,5 @@ spec:
     - topicRef:
         name: sourcereporepository-dep
       serviceAccountRef:
-        name: sourcereporepository-dep
+        name: joseph
       messageFormat: JSON
