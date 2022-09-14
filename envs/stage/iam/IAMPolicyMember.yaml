@@ -5,8 +5,8 @@ metadata:
   name: iampolicymember-projectrole
   namespace: iac
 spec:
-  member: serviceAccount:iamcustomrole-dep-project@jvillarreal-sandbox-demo.iam.gserviceaccount.com
-  role: projects/jvillarreal-sandbox-demo/roles/cutomroletestargo
+  member: serviceAccount:iamcustomrole-dep-project@config-conector-sample.iam.gserviceaccount.com
+  role: projects/config-conector-sample/roles/cutomroletestargo
   resourceRef:
     kind: PubSubTopic
     name: containercluster-dep-vpcnative

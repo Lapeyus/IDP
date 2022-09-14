@@ -10,7 +10,7 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMCustomRole
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
+    cnrm.cloud.google.com/project-id: config-conector-sample
   name: iamcustomrolesampleproject2
 spec:
   title: CustomRole
@@ -24,7 +24,7 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicy
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
+    cnrm.cloud.google.com/project-id: config-conector-sample
   name: iampolicy-sample-pubsubadmin
 spec:
   resourceRef:
@@ -34,8 +34,8 @@ spec:
   bindings:
     - role: roles/editor
       members:
-        - serviceAccount:devops-robot@jvillarreal-sandbox-demo.iam.gserviceaccount.com
-    # - role: projects/jvillarreal-sandbox-demo/roles/iamcustomrolesampleproject2
+        - serviceAccount:devops-robot@config-conector-sample.iam.gserviceaccount.com
+    # - role: projects/config-conector-sample/roles/iamcustomrolesampleproject2
     #   members:
     #     - user:joseph.villarreal@66degrees.com
 ---
@@ -43,18 +43,18 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPartialPolicy
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
+    cnrm.cloud.google.com/project-id: config-conector-sample
   name: iampartialpolicy-sample-project
 spec:
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
-    # name: jvillarreal-sandbox-demo
-    external: projects/jvillarreal-sandbox-demo
+    # name: config-conector-sample
+    external: projects/config-conector-sample
   bindings:
     - role: roles/storage.admin
       members:
-        - member: serviceAccount:devops-robot@jvillarreal-sandbox.iam.gserviceaccount.com
+        - member: serviceAccount:devops-robot@config-conector-sample.iam.gserviceaccount.com
     # - role: roles/editor
     #   members:
     #     - memberFrom:
@@ -65,13 +65,13 @@ apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
   annotations:
-    cnrm.cloud.google.com/project-id: jvillarreal-sandbox-demo
+    cnrm.cloud.google.com/project-id: config-conector-sample
   name: test-iampolicymember
 spec:
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     kind: Project
-    external: projects/jvillarreal-sandbox-demo
+    external: projects/config-conector-sample
   member: user:joseph.villarreal@66degrees.com
   role: roles/storage.admin
 ...

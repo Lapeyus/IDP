@@ -1,4 +1,4 @@
-projectRef: jvillarreal-sandbox-demo
+projectRef: config-conector-sample
 serviceAccount: devops-robot
 serviceusage:
   - cloudasset.googleapis.com

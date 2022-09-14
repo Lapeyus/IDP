@@ -1,4 +1,4 @@
-projectID: jvillarreal-sandbox
+projectID: config-conector-sample
 # name of the cluster region
 clusterLocation: us-central1
 # name of the GKE cluster

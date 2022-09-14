@@ -5,6 +5,6 @@
 ########
 # terraform {
 #   backend "gcs" {
-#     bucket = "jvillarreal-sandbox-tfstate" ####Insert state bucket 
+#     bucket = "config-conector-sample-tfstate" ####Insert state bucket 
 #   }
 # }

@@ -15,8 +15,8 @@ spec:
     - us-central1-f
   workloadIdentityConfig:
     # Workload Identity supports only a single namespace based on your project name.
-    # Replace jvillarreal-sandbox-demo below with your project ID.
-    workloadPool: jvillarreal-sandbox-demo.svc.id.goog
+    # Replace config-conector-sample below with your project ID.
+    workloadPool: config-conector-sample.svc.id.goog
   networkingMode: VPC_NATIVE
   networkRef:
     name: containercluster-dep-vpcnative

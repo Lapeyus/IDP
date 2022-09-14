@@ -115,7 +115,7 @@ resource "google_container_node_pool" "primary_node" {
   ]
 }
 
-# terraform import google_gke_hub_feature.feature projects/jvillarreal-sandbox-demo/locations/global/features/configmanagement
+# terraform import google_gke_hub_feature.feature projects/config-conector-sample/locations/global/features/configmanagement
 resource "google_gke_hub_feature" "feature" {
   name     = "configmanagement"
   location = "global"

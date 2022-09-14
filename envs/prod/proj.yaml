@@ -19,8 +19,8 @@
 #     cnrm.cloud.google.com/auto-create-network: "false"
 #   name: iampolicy-dep-external-project
 # spec:
-#   name: jvillarreal-sandbox-dev
-#   resourceID: jvillarreal-sandbox-dev
+#   name: config-conector-sample-dev
+#   resourceID: config-conector-sample-dev
 #   billingAccountRef:
 #     external: "0078AA-34EC5B-80DDA4"
 #   folderRef:
