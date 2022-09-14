@@ -43,5 +43,5 @@ spec:
   resourceRef:
     kind: Project
     external: projects/{{ .Values.projectID }}
-    # apiVersion: cloudresourcemanager.googleapis.com/v1beta1
+    apiVersion: cloudresourcemanager.googleapis.com/v1beta1
 
