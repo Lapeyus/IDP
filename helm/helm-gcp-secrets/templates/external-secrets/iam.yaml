@@ -46,6 +46,9 @@ spec:
   - members:
     - member: serviceAccount:external-secrets-identity@{{ .Values.projectID }}.iam.gserviceaccount.com
     role: roles/secretmanager.admin
+  - members:
+    - member: serviceAccount:external-secrets-identity@{{ .Values.projectID }}.iam.gserviceaccount.com
+    role: roles/secretmanager.secretAccessor
   resourceRef:
     apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
     external: 'projects/{{ .Values.projectID }}'
