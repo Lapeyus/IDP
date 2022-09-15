@@ -34,3 +34,11 @@ metadata:
     cnrm.cloud.google.com/project-id: config-conector-sample
   name: kubectlapplydemo
   namespace: default
+---
+apiVersion: pubsub.cnrm.cloud.google.com/v1beta1
+kind: PubSubTopic
+metadata:
+  annotations:
+    cnrm.cloud.google.com/project-id: config-conector-sample
+  name: kubectlapplydemo2
+  namespace: default
