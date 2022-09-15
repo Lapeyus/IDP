@@ -37,5 +37,4 @@ resource "google_compute_firewall" "gke-net-firewall" {
     ports    = [31899]
   }
   target_tags = ["default-idp"]
-  # target_service_accounts = ["terraform-argocd@crisp-build.iam.gserviceaccount.com",]
 }
