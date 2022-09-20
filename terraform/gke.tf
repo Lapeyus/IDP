@@ -78,7 +78,6 @@ resource "google_container_cluster" "primary" {
   }
 }
 
-# # Separately Managed Node Pool
 resource "google_container_node_pool" "primary_node" {
   project  = var.gcp_project
   name     = "${google_container_cluster.primary.name}-node-pool"
@@ -137,7 +136,6 @@ resource "google_gke_hub_membership" "membership" {
     google_container_cluster.primary
   ]
 }
-
 
 resource "google_gke_hub_feature_membership" "feature_member" {
   location   = "global"
