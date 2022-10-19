@@ -21,7 +21,6 @@ spec:
             annotations: 
                 kubernetes.io/ingress.global-static-ip-name = "ingress-nginx"
             loadBalancerIP = "34.72.218.63"
-    path: helm/ingress-nginx
   syncPolicy:
     automated:
       prune: true
