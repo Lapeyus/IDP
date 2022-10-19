@@ -53,12 +53,12 @@ spec:
     targetRevision: 4.3.0
     helm:
       releaseName: ingress-nginx
-      values: |
-        controller:
-          service: 
-            annotations: 
-                kubernetes.io/ingress.global-static-ip-name = "ingress-nginx"
-            loadBalancerIP = "34.72.218.63"
+      # values: |
+      #   controller:
+      #     service: 
+      #       annotations: 
+      #           kubernetes.io/ingress.global-static-ip-name = "ingress-nginx"
+      #       loadBalancerIP = "34.72.218.63"
   destination:
     server: "https://kubernetes.default.svc"
     namespace: default
