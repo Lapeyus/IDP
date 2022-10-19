@@ -5,6 +5,7 @@ serviceusage:
   - cloudbilling.googleapis.com
   - serviceusage.googleapis.com
   - secretmanager.googleapis.com
+  - container.googleapis.com
   - pubsub.googleapis.com
   - sourcerepo.googleapis.com
   - cloudbuild.googleapis.com

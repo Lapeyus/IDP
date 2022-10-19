@@ -93,21 +93,21 @@ resource "google_compute_address" "lb_ip_address" {
 }
 
 #  helm fetch ingress-nginx/ingress-nginx --untar --untardir helm/ --version 3.34.0 
-resource "helm_release" "ingress-nginx" {
-  name       = "ingress-nginx"
-  repository = "https://kubernetes.github.io/ingress-nginx"
-  chart      = "ingress-nginx"
-  namespace  = "kube-system"
-  version    = "3.34.0"
-  set {
-    name  = "controller.service.loadBalancerIP"
-    value = google_compute_address.lb_ip_address.address
-  }
-  set {
-    name  = "controller.service.annotations.service.kubernetes\\.io/ingress\\.global-static-ip-name"
-    value = google_compute_address.lb_ip_address.name
-  }
-}
+# resource "helm_release" "ingress-nginx" {
+#   name       = "ingress-nginx"
+#   repository = "https://kubernetes.github.io/ingress-nginx"
+#   chart      = "ingress-nginx"
+#   namespace  = "kube-system"
+#   version    = "3.34.0"
+#   set {
+#     name  = "controller.service.loadBalancerIP"
+#     value = google_compute_address.lb_ip_address.address
+#   }
+#   set {
+#     name  = "controller.service.annotations.service.kubernetes\\.io/ingress\\.global-static-ip-name"
+#     value = google_compute_address.lb_ip_address.name
+#   }
+# }
 
 # # note this requires the terraform to be run regularly
 # resource "time_rotating" "mykey_rotation" {
