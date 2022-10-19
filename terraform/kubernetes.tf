@@ -33,7 +33,7 @@ resource "kubernetes_secret" "git-creds" {
   ]
 
 
-  for_each = toset(["config-management-system", "default"])
+  for_each = toset([ "default"])
 }
 
 provider "helm" {
@@ -81,6 +81,32 @@ resource "helm_release" "argo" {
   depends_on = [
     google_container_cluster.primary
   ]
+}
+
+
+resource "google_compute_address" "lb_ip_address" {
+  provider     = google
+  project      = var.gcp_project
+  name         = "ingress-nginx"
+  address_type = "EXTERNAL"
+  region       = var.gcp_region
+}
+
+#  helm fetch ingress-nginx/ingress-nginx --untar --untardir helm/ --version 3.34.0 
+resource "helm_release" "ingress-nginx" {
+  name       = "ingress-nginx"
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  chart      = "ingress-nginx"
+  namespace  = "kube-system"
+  version    = "3.34.0"
+  set {
+    name  = "controller.service.loadBalancerIP"
+    value = google_compute_address.lb_ip_address.address
+  }
+  set {
+    name  = "controller.service.annotations.service.kubernetes\\.io/ingress\\.global-static-ip-name"
+    value = google_compute_address.lb_ip_address.name
+  }
 }
 
 # # note this requires the terraform to be run regularly

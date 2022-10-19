@@ -1,0 +1,40 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wireguard
+  namespace: default
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      values: |
+        controller:
+          service: 
+            annotations: 
+              service:
+                kubernetes.io/ingress.global-static-ip-name = "ingress-nginx"
+            loadBalancerIP = "34.72.218.63"
+    path: helm/ingress-nginx
+    repoURL: git@github.com:Lapeyus/IDP.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+      limit: 2
+    syncOptions:
+      - Replace=true
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - ApplyOutOfSyncOnly=true
