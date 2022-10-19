@@ -61,4 +61,4 @@ spec:
       #       loadBalancerIP = "34.72.218.63"
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: default
+    namespace: kube-system
