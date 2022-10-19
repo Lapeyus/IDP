@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: wireguard
+  name: nginx
   namespace: default
 spec:
   destination:
@@ -15,7 +15,6 @@ spec:
         controller:
           service: 
             annotations: 
-              service:
                 kubernetes.io/ingress.global-static-ip-name = "ingress-nginx"
             loadBalancerIP = "34.72.218.63"
     path: helm/ingress-nginx
