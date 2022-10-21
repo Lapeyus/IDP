@@ -11,7 +11,7 @@ spec:
     repoURL: https://kubernetes.github.io/ingress-nginx
     targetRevision: 4.3.0 #3.34.0
     helm:
-      releaseName: ingress-nginx
+      releaseName: ingress-nginx2
       # values: |
       #   controller:
       #     service: 
