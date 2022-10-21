@@ -14,7 +14,7 @@ spec:
       releaseName: ingress-nginx2
       parameters:
         - name: controller.service.loadBalancerIP
-          value: 34.72.218.63
+          value: "34.133.66.145"
       # values: |-
       #   controller:
       #     service: 
