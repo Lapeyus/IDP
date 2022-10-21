@@ -12,10 +12,13 @@ spec:
     targetRevision: 4.3.0 #3.34.0
     helm:
       releaseName: ingress-nginx2
-      values: |-
-        controller:
-          service: 
-            loadBalancerIP = 34.72.218.63
+      parameters:
+        - name: controller.service.loadBalancerIP
+          value: 34.72.218.63
+      # values: |-
+      #   controller:
+      #     service: 
+      #       loadBalancerIP = 34.72.218.63
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kube-system
