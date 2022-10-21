@@ -15,9 +15,7 @@ spec:
       values: |
         controller:
           service: 
-            annotations: 
-                kubernetes.io/ingress.global-static-ip-name = "ingress-nginx"
-            loadBalancerIP = "34.72.218.63"
+            loadBalancerIP = 34.72.218.63
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kube-system
