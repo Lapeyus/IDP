@@ -15,17 +15,13 @@ spec:
       parameters:
         - name: controller.service.loadBalancerIP
           value: "34.133.66.145"
-      # values: |-
-      #   controller:
-      #     service: 
-      #       loadBalancerIP = 34.72.218.63
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kube-system
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
+      selfHeal: false
     retry:
       backoff:
         duration: 5s
