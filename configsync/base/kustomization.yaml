@@ -3,4 +3,4 @@ helmCharts:
   repo: https://argoproj.github.io/argo-helm  
   version: 5.13.8
   releaseName: argo-cd
-  namespace: argo-cd
+  namespace: argocd
