@@ -11,7 +11,7 @@ spec:
     owner: Lapeyus
     name: IDP
     push:
-      branch: main
+      branch: argo
   ignoredFiles:
     - "**/*.md"
   includedFiles:
