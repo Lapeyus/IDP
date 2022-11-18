@@ -7,7 +7,7 @@ resource "google_project_service" "gcp_resource_manager_api" {
     # "cloudresourcemanager.googleapis.com",
     # "gkeconnect.googleapis.com",
     # "gkehub.googleapis.com",
-    # "anthosconfigmanagement.googleapis.com"
+    "anthosconfigmanagement.googleapis.com" #*
   ])
 
   service                    = each.key

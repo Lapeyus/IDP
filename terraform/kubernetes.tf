@@ -30,30 +30,30 @@ resource "kubernetes_manifest" "connector_config" {
   }
 }
 
-# resource "kubernetes_secret" "git-creds" {
-#   metadata {
-#     name      = "git-creds"
-#     namespace = each.key
-#     labels = {
-#       "argocd.argoproj.io/secret-type" = "repository"
-#     }
-#   }
-#   data = {
-#     "ssh"           = file("~/.ssh/id_rsa")
-#     "sshPrivateKey" = file("~/.ssh/id_rsa")
-#     "url"           = "git@github.com:Lapeyus/IDP.git"
-#   }
-#   depends_on = [
-#     google_container_cluster.primary,
-#     google_gke_hub_feature.feature,
-#     google_gke_hub_membership.membership,
-#     google_gke_hub_feature_membership.feature_member,
-#     google_service_account_iam_binding.workloadIdentityUser
-#   ]
+resource "kubernetes_secret" "git-creds" {
+  metadata {
+    name      = "git-creds"
+    namespace = each.key
+    labels = {
+      "argocd.argoproj.io/secret-type" = "repository"
+    }
+  }
+  data = {
+    "ssh"           = file("~/.ssh/id_rsa")
+    "sshPrivateKey" = file("~/.ssh/id_rsa")
+    "url"           = "git@github.com:Lapeyus/IDP.git"
+  }
+  depends_on = [
+    google_container_cluster.primary,
+    google_gke_hub_feature.feature,
+    google_gke_hub_membership.membership,
+    google_gke_hub_feature_membership.feature_member,
+    google_service_account_iam_binding.workloadIdentityUser
+  ]
 
 
-#   for_each = toset(["default"])
-# }
+  for_each = toset(["default", "config-management-system"])
+}
 
 # provider "helm" {
 #   kubernetes {
