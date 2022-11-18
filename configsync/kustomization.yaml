@@ -2,6 +2,6 @@ resources:
 - base
 
 patches:
-- path: patch/ignore-deployment-mutation-patch.yaml
+- path: patches/ignore-deployment-mutation-patch.yaml
   target:
     kind: Deployment
