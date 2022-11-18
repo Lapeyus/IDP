@@ -1,3 +1,1 @@
-# IDP
-DevOps Internal Developer Platform (DIDP)
-- self service platform
+# Setting up Config Connector with Terraform, Config Sync with Kustomize and Helm
