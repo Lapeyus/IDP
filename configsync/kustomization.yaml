@@ -1,7 +1,0 @@
-resources:
-- base
-
-patches:
-- path: patches/ignore-deployment-mutation-patch.yaml
-  target:
-    kind: Deployment
