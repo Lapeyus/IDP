@@ -15,7 +15,7 @@ spec:
       recurse: true
     path: helm/wireguards
     repoURL: git@github.com:Lapeyus/IDP.git
-    targetRevision: HEAD
+    targetRevision: argo
   syncPolicy:
     automated:
       prune: true
