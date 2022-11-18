@@ -1,5 +1,5 @@
 resources:
-- configsync/base
+- base
 
 patches:
 - path: patch/ignore-deployment-mutation-patch.yaml
