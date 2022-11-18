@@ -24,21 +24,3 @@ resource "google_service_account_iam_binding" "workloadIdentityUser" {
     google_project_iam_binding.idp-robot
   ]
 }
-
-
-# resource "google_folder_iam_binding" "folder" {
-#   folder = "folders/302633594206"
-#   role   = "roles/resourcemanager.folderCreator"
-
-#   members = [
-#     "serviceAccount:${google_service_account.idp-robot.email}"
-#   ]
-# }
-# resource "google_folder_iam_binding" "project" {
-#   folder = "folders/302633594206"
-#   role   = "roles/resourcemanager.projectCreator"
-
-#   members = [
-#     "serviceAccount:${google_service_account.idp-robot.email}"
-#   ]
-# }

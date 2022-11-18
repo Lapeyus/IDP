@@ -1,6 +1,6 @@
-helmCharts:
-- name: argo-cd
-  repo: https://argoproj.github.io/argo-helm  
-  version: 5.9.1
-  releaseName: argo-cd
-  namespace: argo-cd
+helmCharts: []
+# - name: cert-manager
+#   repo: https://charts.jetstack.io
+#   version: v1.5.3
+#   releaseName: my-cert-manager
+#   namespace: cert-manager

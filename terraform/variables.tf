@@ -17,36 +17,12 @@ variable "pod_cidr" {
 variable "services_cidr" {
   type = string
 }
-variable "master" {
-  type = map(any)
-  default = {
-    "master_ipv4_cidr_block" = "186.15.108.251/28"
-  }
-}
 
-variable "gke_username" {
-  type        = string
-  description = "GKE username"
-  default     = ""
-}
-variable "gke_password" {
-  type        = string
-  description = "GKE password"
-  default     = ""
-}
 variable "cluster_name" {
   type        = string
   description = "The name of the cluster"
 }
-variable "gke_num_nodes" {
-  type        = number
-  default     = 1
-  description = "number of gke nodes"
-}
 
-variable "service_account" {
-  type = string
-}
 variable "max_cpu" {
   description = "The maximum CPU in Gbs for the cluster"
   type        = number
@@ -81,17 +57,3 @@ variable "storage-class" {
   description = "The storage class of the Storage Bucket to create"
   default     = "REGIONAL"
 }
-# variable "user_names" {
-#   description = "Create IAM users with these names"
-#   type        = list(string)
-#   default     = [
-#     "jvillarreal",
-#     "default",
-#   ]
-# }
-
-# locals {
-#   members = "${formatlist("serviceAccount:${var.gcp_project}.svc.id.goog[%s/%s-job]", var.user_names,var.user_names)}"
-#   app = "${formatlist("serviceAccount:${var.gcp_project}.svc.id.goog[%s/%s]",var.user_names, "dev")}"
-#   appprod = "${formatlist("serviceAccount:${var.gcp_project}.svc.id.goog[%s/%s]",var.user_names, "prod")}"
-# }

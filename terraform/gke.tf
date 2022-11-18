@@ -22,7 +22,6 @@ resource "google_container_cluster" "primary" {
   private_cluster_config {
     enable_private_endpoint = false
     enable_private_nodes    = false
-    # master_ipv4_cidr_block = "${lookup(var.master, "master_ipv4_cidr_block", "")}"
   }
   database_encryption {
     state = "DECRYPTED"
@@ -83,7 +82,6 @@ resource "google_container_node_pool" "primary_node_pool" {
   name     = "${google_container_cluster.primary.name}-node-pool"
   location = var.gcp_region
   cluster  = google_container_cluster.primary.name
-  # node_count = var.gke_num_nodes
   autoscaling {
     min_node_count = var.autoscale_min_node
     max_node_count = var.autoscale_max_node
@@ -92,11 +90,8 @@ resource "google_container_node_pool" "primary_node_pool" {
     metadata = {
       disable-legacy-endpoints = "true"
     }
-    # min_cpu_platform  = (known after apply)
-    # oauth_scopes      = (known after apply)
     preemptible = true
     tags        = ["${var.gcp_project}-gke", "default-idp"]
-    # taint             = (known after apply)
     workload_metadata_config {
       node_metadata = "GKE_METADATA_SERVER"
     }
