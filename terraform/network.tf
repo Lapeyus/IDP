@@ -1,4 +1,4 @@
-#Create new VPC for IDP Cluster 
+#Create new VPC for IDP Cluster
 resource "google_compute_network" "vpc" {
   project                         = var.gcp_project
   description                     = "VPC for IDP Cluster"
@@ -25,16 +25,21 @@ resource "google_compute_subnetwork" "gke" {
     range_name    = "gke-services-range"
     ip_cidr_range = var.services_cidr
   }
+  log_config {
+    aggregation_interval = "INTERVAL_15_MIN"
+    flow_sampling        = 0.5
+    metadata             = "INCLUDE_ALL_METADATA"
+  }
 }
 
-resource "google_compute_firewall" "gke-net-firewall" {
-  project  = var.gcp_project
-  name     = "gke-net-firewall"
-  network  = google_compute_network.vpc.name
-  priority = 1000
-  allow {
-    protocol = "UDP"
-    ports    = [31899]
-  }
-  target_tags = ["default-idp"]
-}
+# resource "google_compute_firewall" "gke-net-firewall" {
+#   project  = var.gcp_project
+#   name     = "gke-net-firewall"
+#   network  = google_compute_network.vpc.name
+#   priority = 1000
+#   allow {
+#     protocol = "UDP"
+#     ports    = [31899]
+#   }
+#   target_tags = ["default-idp"]
+# }

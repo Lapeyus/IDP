@@ -1,11 +1,11 @@
-#Subnetwork CIDR ranges
-subnetwork_cidr = "10.128.0.0/20"
-pod_cidr        = "10.116.0.0/14"
-services_cidr   = "10.120.0.0/20"
-
 # GCP Settings
 gcp_project = "config-conector-sample"
 gcp_region  = "us-central1"
+
+#Subnetwork CIDR ranges
+subnetwork_cidr = "10.10.0.0/24"   #256
+services_cidr   = "192.168.1.0/24" #256
+pod_cidr        = "172.16.0.0/20"  #4,096
 
 #Service Account
 service_account = "idp-robot@config-conector-sample.iam.gserviceaccount.com"
