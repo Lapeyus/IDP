@@ -97,7 +97,7 @@ resource "google_container_node_pool" "primary_node_pool" {
     }
     # service_account = google_service_account.idp-robot.email
     oauth_scopes = [
-      "https://www.googleapis.com/auth/logging.write", 
+      "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
       "https://www.googleapis.com/auth/devstorage.read_only",
     ]

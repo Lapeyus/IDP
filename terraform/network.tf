@@ -11,12 +11,13 @@ resource "google_compute_network" "vpc" {
 
 #Create new subnet with two secondary ranges for pods and services
 resource "google_compute_subnetwork" "gke" {
-  name                     = "gke-subnet"
-  region                   = var.gcp_region
-  network                  = google_compute_network.vpc.name
-  ip_cidr_range            = var.subnetwork_cidr
-  private_ip_google_access = true
-  project                  = var.gcp_project
+  name                       = "gke-subnet"
+  region                     = var.gcp_region
+  network                    = google_compute_network.vpc.name
+  ip_cidr_range              = var.subnetwork_cidr
+  private_ip_google_access   = true
+  private_ipv6_google_access = true
+  project                    = var.gcp_project
   secondary_ip_range {
     range_name    = "gke-pods-range"
     ip_cidr_range = var.pod_cidr
