@@ -4,7 +4,7 @@ resource "google_project_service" "gcp_resource_manager_api" {
   for_each = toset([
     "compute.googleapis.com",
     "container.googleapis.com",
-    "anthosconfigmanagement.googleapis.com" #*
+    "anthosconfigmanagement.googleapis.com"
   ])
 
   service                    = each.key
