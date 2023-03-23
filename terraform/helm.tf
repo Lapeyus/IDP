@@ -1,13 +1,3 @@
-provider "helm" {
-  kubernetes {
-    host                   = google_container_cluster.primary.endpoint
-    client_certificate     = base64decode(google_container_cluster.primary.master_auth.0.client_certificate)
-    client_key             = base64decode(google_container_cluster.primary.master_auth.0.client_key)
-    cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
-    token                  = data.template_file.access_token.rendered
-  }
-}
-
 #  argo helm chart.
 resource "helm_release" "argo" {
   atomic                     = false
@@ -33,7 +23,7 @@ resource "helm_release" "argo" {
   skip_crds                  = false
   timeout                    = 300
   verify                     = false
-  version                    = "5.13.8"
+  version                    = "5.20.2"
   wait                       = true
   wait_for_jobs              = false
   depends_on = [
