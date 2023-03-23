@@ -1,13 +1,8 @@
-#Enable Cloud Resource Manager
-resource "google_project_service" "gcp_resource_manager_api" {
+# Enable GCP services for the project
+resource "google_project_service" "gcp_services" {
   project = var.gcp_project
-  for_each = toset([
-    "compute.googleapis.com",
-    "container.googleapis.com",
-    "anthosconfigmanagement.googleapis.com"
-  ])
+  count   = length(var.enabled_services)
 
-  service                    = each.key
+  service                    = var.enabled_services[count.index]
   disable_dependent_services = true
 }
-
