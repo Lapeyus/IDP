@@ -138,48 +138,12 @@ resource "google_gke_hub_membership" "membership" {
   provider = google-beta
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
   depends_on = [
     google_container_cluster.primary
   ]
 }
-
-# resource "google_gke_hub_feature_membership" "feature_member" {
-#   location   = "global"
-#   feature    = google_gke_hub_feature.feature.name
-#   membership = google_gke_hub_membership.membership.membership_id
-#   configmanagement {
-#     version = var.config_management.version
-#     policy_controller {
-#       enabled                    = var.config_management.policy_controller.enabled
-#       audit_interval_seconds     = var.config_management.policy_controller.audit_interval_seconds
-#       exemptable_namespaces      = var.config_management.policy_controller.exemptable_namespaces
-#       log_denies_enabled         = var.config_management.policy_controller.log_denies_enabled
-#       referential_rules_enabled  = var.config_management.policy_controller.referential_rules_enabled
-#       template_library_installed = var.config_management.policy_controller.template_library_installed
-#       mutation_enabled           = var.config_management.policy_controller.mutation_enabled
-#       monitoring {
-#         backends = var.config_management.policy_controller.monitoring.backends
-#       }
-#     }
-#     config_sync {
-#       prevent_drift = var.config_management.config_sync.prevent_drift
-#       source_format = var.config_management.config_sync.source_format
-#       git {
-#         sync_repo      = var.config_management.config_sync.git.sync_repo
-#         sync_rev       = var.config_management.config_sync.git.sync_rev
-#         sync_wait_secs = var.config_management.config_sync.git.sync_wait_secs
-#         sync_branch    = var.config_management.config_sync.git.sync_branch
-#         policy_dir     = var.config_management.config_sync.git.policy_dir
-#         secret_type    = var.config_management.config_sync.git.secret_type
-
-#       }
-#     }
-#   }
-#   provider   = google-beta
-#   depends_on = [google_container_cluster.primary]
-# }
 
 # terraform import google_gke_hub_feature_membership.feature_member projects/config-conector-sample/locations/global/features/configmanagement/membershipId/sauron
 # terraform import google_gke_hub_feature_membership.feature_member config-conector-sample/global/configmanagement/sauron

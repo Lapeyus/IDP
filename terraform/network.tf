@@ -38,14 +38,14 @@ resource "google_compute_subnetwork" "gke" {
 }
 
 
-# resource "google_compute_firewall" "gke-net-firewall" {
-#   project  = var.gcp_project
-#   name     = "gke-net-firewall"
-#   network  = google_compute_network.vpc.name
-#   priority = 1000
-#   allow {
-#     protocol = "UDP"
-#     ports    = [31899]
-#   }
-#   target_tags = ["default-idp"]
-# }
+resource "google_compute_firewall" "gke-net-firewall" {
+  project  = var.gcp_project
+  name     = "gke-net-firewall"
+  network  = google_compute_network.vpc.name
+  priority = 1000
+  allow {
+    protocol = "UDP"
+    ports    = [31899]
+  }
+  target_tags = ["default-idp"]
+}
