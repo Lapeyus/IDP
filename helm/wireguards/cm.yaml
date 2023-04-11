@@ -13,7 +13,7 @@ data:
   TZ: "America/New_York"
   SERVERPORT: "31899"
   PEERS: "1"
-  PEERDNS: "10.120.0.10"
-  ALLOWEDIPS: "10.120.0.0/20"
+  PEERDNS: "192.168.1.10"
+  ALLOWEDIPS: "0.0.0.0/0, ::/0" #"10.120.0.0/20"
   INTERNAL_SUBNET: "192.168.200.1"
 ...
