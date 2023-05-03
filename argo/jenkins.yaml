@@ -32,7 +32,7 @@ spec:
   source:
     chart: jenkins
     repoURL: https://charts.jenkins.io
-    targetRevision: 4.3.8
+    targetRevision: 4.3.7
     helm:
       values: |
         # For FQDN resolving of the controller service. 
