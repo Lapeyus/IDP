@@ -13,7 +13,7 @@ spec:
     directory:
       jsonnet: {}
       recurse: true
-    path: configsync
+    path: configsync/
     repoURL: git@github.com:Lapeyus/IDP.git
     targetRevision: main
   syncPolicy:
