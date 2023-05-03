@@ -1,5 +1,5 @@
 ---
-apiVersion: argoproj.io/v1alpha1
+apiVersion: argoproj.io/v1alpha1ire
 kind: Application
 metadata:
   name: selfprovisioner
@@ -13,9 +13,9 @@ spec:
     directory:
       jsonnet: {}
       recurse: true
-    path: argo
+    path: configsync
     repoURL: git@github.com:Lapeyus/IDP.git
-    targetRevision: argo
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true
