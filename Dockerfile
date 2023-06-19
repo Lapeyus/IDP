@@ -1,4 +1,4 @@
-FROM nginx
+FROM us-docker.pkg.dev/cloudrun/container/hello
 
 COPY run.sh .
 
